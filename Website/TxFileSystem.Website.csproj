@@ -11,10 +11,12 @@
     <AssemblyName>TxFileSystem.Website</AssemblyName>
     <Company>EQX Media B.V.</Company>
     <Authors>Jarno Kamminga</Authors>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Copyright>(c) 2021 EQX Media B.V.</Copyright>
     <PackageProjectUrl>https://txfilesystem.io</PackageProjectUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/eqxmedianl/TxFileSystem.Website/</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
