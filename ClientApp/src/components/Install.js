@@ -10,6 +10,7 @@
  *
  */
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import ActionLink from './ActionLink';
 import PackageInstallCommands from './PackageInstallCommands';
 
@@ -42,6 +43,10 @@ export class Install extends Component {
         let latest = this.state.packages.filter((e) => e.version === this.state.latest_version)[0];
         return (
             <div>
+                <Helmet>
+                    <title>TxFileSystem Installation</title>
+                    <meta name="description" content="Instructions on how to install TxFileSystem to .NET projects" />
+                </Helmet>
                 <section class="latest-version row mb-4">
                     <aside class="col-md-2 col-sm-12">
                         <img src={latest.iconUrl} class="float-left mr-2 w-100" />

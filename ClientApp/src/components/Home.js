@@ -10,6 +10,7 @@
  *
  */
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -40,6 +41,10 @@ export class Home extends Component {
     render () {
         return (
             <div>
+                <Helmet>
+                    <title>TxFileSystem - OpenSource .NET library</title>
+                    <meta name="description" content="TxFileSystem is a transactional filesystem wrapper using the .NET filesystem abstraction from System.IO.Abstractions" />
+                </Helmet>
                 <section class="readme-md">
                     <ReactMarkdown renderers={renderers} source={this.state.terms} />
                 </section>

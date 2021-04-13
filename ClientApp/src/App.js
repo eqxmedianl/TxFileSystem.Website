@@ -10,6 +10,7 @@
  * 
  */
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
@@ -29,11 +30,16 @@ export default class App extends Component {
   static displayName = App.name;
 
   render () {
-    return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/install' component={Install} />
-      </Layout>
+      return (
+          <Layout>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>TxFileSystem</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
+            <Route exact path='/' component={Home} />
+            <Route path='/install' component={Install} />
+        </Layout>
     );
   }
 }
