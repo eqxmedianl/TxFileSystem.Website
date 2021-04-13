@@ -22,8 +22,10 @@ export class License extends Component {
     render () {
         return (
             <div>
-                <FetchedMarkDown sectionClass="license-md"
-                    markDownUrl="https://raw.githubusercontent.com/eqxmedianl/TxFileSystem.Website/main/License.md" />
+                <pre>
+                    <FetchedMarkDown sectionClass="license-md"
+                        markDownUrl="https://raw.githubusercontent.com/eqxmedianl/TxFileSystem.Website/main/License.md" />
+                </pre>
             </div>
         );
     }
