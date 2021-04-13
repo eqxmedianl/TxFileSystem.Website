@@ -15,13 +15,14 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { Install } from './components/Install';
+import configData from "./config.json";
 
 import './custom.css'
 
 import TagManager from 'react-gtm-module'
 
 const tagManagerArgs = {
-    gtmId: 'GTM-PDTXLVJ'
+    gtmId: configData["GTM_TAG_ID"]
 }
 
 TagManager.initialize(tagManagerArgs)
