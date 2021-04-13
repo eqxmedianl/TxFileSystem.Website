@@ -11,7 +11,7 @@
  */
 import React, { Component } from 'react';
 
-export default class ActionLink extends Component {
+export default class VersionLink extends Component {
     constructor() {
         super()
         // This binding is necessary to make `this` work in the callback

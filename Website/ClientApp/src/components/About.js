@@ -11,6 +11,7 @@
  */
 import React, { Component } from 'react';
 import { FetchedMarkDown } from "./FetchedMarkDown";
+import { Helmet } from "react-helmet";
 
 export class About extends Component {
     static displayName = About.name;
@@ -22,7 +23,11 @@ export class About extends Component {
     render () {
         return (
             <div>
-                <FetchedMarkDown sectionClass="about-md"
+                <Helmet>
+                    <title>About TxFileSystem</title>
+                    <meta name="description" content="Information about the TxFileSystem project and reasoning behind the development of the OpenSource .NET Library" />
+                </Helmet>
+                    <FetchedMarkDown sectionClass="about-md"
                     markDownUrl="https://raw.githubusercontent.com/eqxmedianl/TxFileSystem.Website/main/About.md" />
             </div>
         );

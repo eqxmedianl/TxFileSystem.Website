@@ -11,7 +11,7 @@
  */
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
-import ActionLink from './ActionLink';
+import VersionLink from './VersionLink';
 import PackageInstallCommands from './PackageInstallCommands';
 
 export class Install extends Component {
@@ -44,7 +44,7 @@ export class Install extends Component {
         return (
             <div>
                 <Helmet>
-                    <title>TxFileSystem Installation</title>
+                    <title>TxFileSystem {latest.version} Installation</title>
                     <meta name="description" content="Instructions on how to install TxFileSystem to .NET projects" />
                 </Helmet>
                 <section class="latest-version row mb-4">
@@ -86,7 +86,7 @@ export class Install extends Component {
                                     {
                                         this.state.packages.map(metadata =>
                                             <tr>
-                                                <td><ActionLink version={metadata.version} updateVersion={this.handleVersionChange} /></td>
+                                                <td><VersionLink version={metadata.version} updateVersion={this.handleVersionChange} /></td>
                                                 <td>{metadata.downloadCount}</td>
                                                 <td>{metadata.lastUpdated}</td>
                                             </tr>
