@@ -41,9 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ClientApp\src\components\Footer.js" />
-    <Content Include="ClientApp\src\components\FetchedMarkDown.css" />
-    <Content Include="ClientApp\src\components\FetchedMarkDown.js" />
+    <Content Include="ClientApp\src\components\Layout\Footer.js" />
+    <Content Include="ClientApp\src\components\Controls\FetchedMarkDown.css" />
+    <Content Include="ClientApp\src\components\Controls\FetchedMarkDown.js" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -11,8 +11,8 @@
  */
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
-import VersionLink from './VersionLink';
-import PackageInstallCommands from './PackageInstallCommands';
+import VersionLink from '../Controls/VersionLink';
+import PackageInstallCommands from '../Controls/PackageInstallCommands';
 
 export class Install extends Component {
     static displayName = Install.name;

@@ -10,27 +10,25 @@
  *
  */
 import React, { Component } from 'react';
-import { FetchedMarkDown } from "./FetchedMarkDown";
 import { Helmet } from "react-helmet";
+import { FetchedMarkDown } from "../Controls/FetchedMarkDown";
 
-export class License extends Component {
-    static displayName = License.name;
+export class Home extends Component {
+    static displayName = Home.name;
 
     constructor(props) {
         super(props)
     }
 
-    render() {
+    render () {
         return (
-            <div class="h-100">
+            <div>
                 <Helmet>
-                    <title>TxFileSystem License</title>
-                    <meta name="description" content="The EQX Proprietary License is applicable to TxFileSystem and displayed on this page" />
+                    <title>TxFileSystem Project - OpenSource .NET Library</title>
+                    <meta name="description" content="EQXMedia.TxFileSystem is a transactional filesystem wrapper using the .NET filesystem abstraction from System.IO.Abstractions" />
                 </Helmet>
-                <pre class="h-100">
-                    <FetchedMarkDown sectionClass="license-md"
-                        markDownUrl="https://raw.githubusercontent.com/eqxmedianl/TxFileSystem.Website/main/License.md" />
-                </pre>
+                <FetchedMarkDown sectionClass="readme-md"
+                    markDownUrl="https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/Readme.md" />
             </div>
         );
     }

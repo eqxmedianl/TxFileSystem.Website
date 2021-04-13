@@ -10,8 +10,8 @@
  *
  */
 import React, { Component } from 'react';
-import { FetchedMarkDown } from "./FetchedMarkDown";
 import { Helmet } from "react-helmet";
+import { FetchedMarkDown } from "../Controls/FetchedMarkDown";
 
 export class About extends Component {
     static displayName = About.name;
