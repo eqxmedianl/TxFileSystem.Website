@@ -19,17 +19,20 @@ export class Home extends Component {
     }
 
     componentWillMount() {
-        fetch("https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/Readme.md").then((response) => response.text()).then((text) => {
-            this.setState({ terms: text })
-        })
+        fetch("https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/Readme.md")
+            .then((response) => response.text()).then((text) => {
+                this.setState({ terms: text })
+            })
     }
 
 
     render () {
         return (
-            <section class="readme-md">
-                <ReactMarkdown renderers={renderers} source={this.state.terms} />
-            </section>
+            <div>
+                <section class="readme-md">
+                    <ReactMarkdown renderers={renderers} source={this.state.terms} />
+                </section>
+            </div>
         );
     }
 }
