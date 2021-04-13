@@ -7,7 +7,13 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <RootNamespace>txfilesystem_website</RootNamespace>
+    <RootNamespace>TxFileSystem.Website</RootNamespace>
+    <AssemblyName>TxFileSystem.Website</AssemblyName>
+    <Company>EQX Media B.V.</Company>
+    <Authors>Jarno Kamminga</Authors>
+    <Version>1.1.0</Version>
+    <Copyright>(c) 2021 EQX Media B.V.</Copyright>
+    <PackageProjectUrl>https://txfilesystem.io</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,10 +1,10 @@
-﻿namespace TxFileSystem.Website
+﻿namespace TxFileSystem.Website.Model
 {
     using System;
 
-    public class Package
+    public sealed class Package
     {
-        public Package(Uri iconUrl, string title, string description, string version, long downloadCount, string lastUpdated = "")
+        public Package(Uri iconUrl, string title, string description, string version, long downloadCount, string lastUpdated)
         {
             IconUrl = iconUrl;
             Title = title;
