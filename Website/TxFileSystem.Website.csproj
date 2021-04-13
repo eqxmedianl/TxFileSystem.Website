@@ -11,10 +11,12 @@
     <AssemblyName>TxFileSystem.Website</AssemblyName>
     <Company>EQX Media B.V.</Company>
     <Authors>Jarno Kamminga</Authors>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Copyright>(c) 2021 EQX Media B.V.</Copyright>
     <PackageProjectUrl>https://txfilesystem.io</PackageProjectUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/eqxmedianl/TxFileSystem.Website/</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +32,8 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Remove="ClientApp\src\components\Readme.css" />
+    <None Remove="ClientApp\src\components\Readme.js" />
     <None Include="..\License.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -38,6 +42,8 @@
 
   <ItemGroup>
     <Content Include="ClientApp\src\components\Footer.js" />
+    <Content Include="ClientApp\src\components\Readme.css" />
+    <Content Include="ClientApp\src\components\Readme.js" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
