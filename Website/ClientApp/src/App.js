@@ -12,11 +12,14 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { About } from './components/About';
-import { License } from './components/License';
-import { Install } from './components/Install';
+
+import { Layout } from './components/Layout/Layout';
+
+import { Home } from './components/Pages/Home';
+import { About } from './components/Pages/About';
+import { License } from './components/Pages/License';
+import { Install } from './components/Pages/Install';
+
 import configData from "./config.json";
 
 import './custom.css'
@@ -30,15 +33,18 @@ const tagManagerArgs = {
 TagManager.initialize(tagManagerArgs)
 
 export default class App extends Component {
-  static displayName = App.name;
+static displayName = App.name;
 
-  render () {
-      return (
-          <Layout>
+render () {
+    return (
+        <Layout>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>TxFileSystem</title>
-                <link rel="canonical" href="http://mysite.com/example" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="canonical" href="http://txfilesystem.io" />
+                <link rel="canonical" href="https://www.txfilesystem.io" />
+                <link rel="canonical" href="http://www.txfilesystem.io" />
             </Helmet>
             <Route exact path='/' component={Home} />
             <Route path='/install' component={Install} />
@@ -46,5 +52,5 @@ export default class App extends Component {
             <Route path='/about' component={About} />
         </Layout>
     );
-  }
+}
 }

@@ -10,7 +10,8 @@
  *
  */
 import React, { Component } from 'react';
-import { FetchedMarkDown } from "./FetchedMarkDown";
+import { Helmet } from "react-helmet";
+import { FetchedMarkDown } from "../Controls/FetchedMarkDown";
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -22,6 +23,10 @@ export class Home extends Component {
     render () {
         return (
             <div>
+                <Helmet>
+                    <title>TxFileSystem Project - OpenSource .NET Library</title>
+                    <meta name="description" content="EQXMedia.TxFileSystem is a transactional filesystem wrapper using the .NET filesystem abstraction from System.IO.Abstractions" />
+                </Helmet>
                 <FetchedMarkDown sectionClass="readme-md"
                     markDownUrl="https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/Readme.md" />
             </div>
