@@ -14,7 +14,7 @@ import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-import './Readme.css';
+import './FetchedMarkDown.css';
 
 const renderers = {
     code: ({ language, value }) => {
@@ -22,7 +22,7 @@ const renderers = {
     }
 }
 
-export class Readme extends Component {
+export class FetchedMarkDown extends Component {
     constructor(props) {
         super(props);
 
@@ -38,7 +38,7 @@ export class Readme extends Component {
 
     render() {
         return (
-            <section class="readme-md">
+            <section class={this.props.sectionClass}>
                 <ReactMarkdown renderers={renderers} source={this.state.contents} />
             </section>
         );

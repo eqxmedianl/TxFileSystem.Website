@@ -11,7 +11,7 @@
     <AssemblyName>TxFileSystem.Website</AssemblyName>
     <Company>EQX Media B.V.</Company>
     <Authors>Jarno Kamminga</Authors>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <Copyright>(c) 2021 EQX Media B.V.</Copyright>
     <PackageProjectUrl>https://txfilesystem.io</PackageProjectUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
@@ -32,8 +32,8 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-    <None Remove="ClientApp\src\components\Readme.css" />
-    <None Remove="ClientApp\src\components\Readme.js" />
+    <None Remove="ClientApp\src\components\FetchedMarkDown.css" />
+    <None Remove="ClientApp\src\components\FetchedMarkDown.js" />
     <None Include="..\License.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -42,8 +42,8 @@
 
   <ItemGroup>
     <Content Include="ClientApp\src\components\Footer.js" />
-    <Content Include="ClientApp\src\components\Readme.css" />
-    <Content Include="ClientApp\src\components\Readme.js" />
+    <Content Include="ClientApp\src\components\FetchedMarkDown.css" />
+    <Content Include="ClientApp\src\components\FetchedMarkDown.js" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
