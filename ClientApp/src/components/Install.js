@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ActionLink from './ActionLink';
 import PackageInstallCommands from './PackageInstallCommands';
 
-export class Packages extends Component {
-    static displayName = Packages.name;
+export class Install extends Component {
+    static displayName = Install.name;
 
     constructor(props) {
         super(props);
@@ -51,30 +51,33 @@ export class Packages extends Component {
                                 })
                             }
                         </div>
-                        <h2 id="tabelLabel" class="mt-4">NuGet Packages</h2>
-                        <p>Below is a listing of TxFileSystem packages published on NuGet.org.</p>
-                        <table className='table table-striped' aria-labelledby="tabelLabel">
-                            <thead>
-                                <tr>
-                                    <th>Version</th>
-                                    <th>Downloads</th>
-                                    <th>Last Updated</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.state.packages.map(metadata =>
-                                        <tr>
-                                            <td><ActionLink version={metadata.version} updateVersion={this.handleVersionChange} /></td>
-                                            <td>{metadata.downloadCount}</td>
-                                            <td>{metadata.lastUpdated}</td>
-                                        </tr>
-                                    )
-                                }
-                            </tbody>
-                        </table>
-                        <div>
-                            <PackageInstallCommands title={latest.title} version={latest.version} />
+                        <div class="mt-4">
+                            <PackageInstallCommands title={latest.title} version={latest.version}
+                                notice="By selecting a version from the Version History the commands shown are updated." />
+                        </div>
+                        <div class="mt-4">
+                            <h2 id="tabelLabel">Version History</h2>
+                            <p>Below is a listing of TxFileSystem packages published on NuGet.org.</p>
+                            <table className='table table-striped' aria-labelledby="tabelLabel">
+                                <thead>
+                                    <tr>
+                                        <th>Version</th>
+                                        <th>Downloads</th>
+                                        <th>Last Updated</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        this.state.packages.map(metadata =>
+                                            <tr>
+                                                <td><ActionLink version={metadata.version} updateVersion={this.handleVersionChange} /></td>
+                                                <td>{metadata.downloadCount}</td>
+                                                <td>{metadata.lastUpdated}</td>
+                                            </tr>
+                                        )
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
