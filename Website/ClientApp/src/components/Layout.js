@@ -19,9 +19,9 @@ export class Layout extends Component {
 
   render () {
     return (
-      <div>
+      <div class="d-flex flex-column vh-100">
         <NavMenu />
-        <Container>
+        <Container className="flex-grow-1">
           {this.props.children}
         </Container>
         <Footer/>

@@ -23,7 +23,7 @@ export class About extends Component {
         return (
             <div>
                 <FetchedMarkDown sectionClass="about-md"
-                    markDownUrl="https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/About.md" />
+                    markDownUrl="https://raw.githubusercontent.com/eqxmedianl/TxFileSystem.Website/main/About.md" />
             </div>
         );
     }

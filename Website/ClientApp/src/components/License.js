@@ -19,12 +19,13 @@ export class License extends Component {
         super(props)
     }
 
-    render () {
+    render() {
         return (
-            <div>
-                <h1>EQX Proprietary License</h1>
-                <FetchedMarkDown sectionClass="license-md"
-                    markDownUrl="https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/License.md" />
+            <div class="h-100">
+                <pre class="h-100">
+                    <FetchedMarkDown sectionClass="license-md"
+                        markDownUrl="https://raw.githubusercontent.com/eqxmedianl/TxFileSystem.Website/main/License.md" />
+                </pre>
             </div>
         );
     }
