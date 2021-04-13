@@ -8,6 +8,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{D42232A0-342F-43F8-AFDD-5415B06B2E3F}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{84D3C9AD-6BBD-48A3-933E-94AA7853A5ED}"
+	ProjectSection(SolutionItems) = preProject
+		About.md = About.md
 		License.md = License.md
 		README.md = README.md
 	EndProjectSection

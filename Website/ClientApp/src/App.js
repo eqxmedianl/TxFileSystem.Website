@@ -14,6 +14,8 @@ import { Helmet } from "react-helmet";
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
+import { About } from './components/About';
+import { License } from './components/License';
 import { Install } from './components/Install';
 import configData from "./config.json";
 
@@ -40,6 +42,8 @@ export default class App extends Component {
             </Helmet>
             <Route exact path='/' component={Home} />
             <Route path='/install' component={Install} />
+            <Route path='/license' component={License} />
+            <Route path='/about' component={About} />
         </Layout>
     );
   }

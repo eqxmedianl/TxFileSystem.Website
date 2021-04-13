@@ -12,8 +12,8 @@
 import React, { Component } from 'react';
 import { FetchedMarkDown } from "./FetchedMarkDown";
 
-export class Home extends Component {
-    static displayName = Home.name;
+export class About extends Component {
+    static displayName = About.name;
 
     constructor(props) {
         super(props)
@@ -22,8 +22,8 @@ export class Home extends Component {
     render () {
         return (
             <div>
-                <FetchedMarkDown sectionClass="readme-md"
-                    markDownUrl="https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/Readme.md" />
+                <FetchedMarkDown sectionClass="about-md"
+                    markDownUrl="https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/About.md" />
             </div>
         );
     }

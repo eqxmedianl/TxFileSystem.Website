@@ -10,6 +10,8 @@
  *
  */
 import React, { Component } from 'react';
+import { NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 export class Footer extends Component {
     constructor() {
@@ -21,7 +23,8 @@ export class Footer extends Component {
             <footer class="footer border-top w-100 p-2">
                 <div class="container text-center">
                     <span class="text-muted">&copy; 2021 <a href="https://www.eqx-media.nl/" target="_blank">EQX Media B.V.</a> All rights reserved.</span> - <span>
-                        View the proprietary source <a href="https://github.com/eqxmedianl/TxFileSystem.Website" target="_blank">on GitHub.</a></span>
+                        View the proprietary source <a href="https://github.com/eqxmedianl/TxFileSystem.Website" target="_blank">on GitHub.</a></span> - <span>
+                        Read the <NavLink tag={Link} className="d-inline p-0" to="/license">EQX&nbsp;Proprietary&nbsp;License</NavLink>.</span>
                 </div>
             </footer>
         );

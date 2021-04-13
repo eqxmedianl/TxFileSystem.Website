@@ -1,6 +1,6 @@
 # EQX Proprietary License
 
-The code inside this repository is subject to `EQX Proprietary License`, eventhough it is publicitely shared.
+The code of this entire software solution is subject to `EQX Proprietary License`, even when it is publicitely shared.
 Therefor it is copyrighted and restricted from being copied, reproduced or redistributed by any party or 
 indiviual other than the original copyright holder mentioned below.
 
