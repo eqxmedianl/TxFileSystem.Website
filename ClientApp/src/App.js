@@ -6,6 +6,14 @@ import { Install } from './components/Install';
 
 import './custom.css'
 
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: 'GTM-PDTXLVJ'
+}
+
+TagManager.initialize(tagManagerArgs)
+
 export default class App extends Component {
   static displayName = App.name;
 
