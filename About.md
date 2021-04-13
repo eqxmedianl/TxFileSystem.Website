@@ -8,7 +8,7 @@ Since the first release it has been published on NuGet.
 
 ## Design and Development
 The development of this OpenSource .NET library `TxFileSytem` is facilitated by [EQX Media B.V.](https://www.eqx-media.nl "Visit the website of EQX Media B.V.").
-A company *Software Development House & Marketing Agency* from The Netherlands.
+The company is a *Software Development House & Marketing Agency* from The Netherlands.
 
 ### Architect and Developer
 Design and development of the OpenSource .NET library `TxFileSytem` is the result of the efforts of [Jarno Kamminga](https://www.linkedin.com/in/jarnokamminga/ "Visit the profile of Jarno Kamminga on LinkedIn").
