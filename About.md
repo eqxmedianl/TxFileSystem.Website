@@ -8,8 +8,6 @@ Since no library existed that fullfilled this need, the company owner decide to 
 Since the first release it has been published on NuGet.
 
 ## Design and Development
-
-### Company
 The development of this OpenSource .NET library `TxFileSytem` is facilitated by [EQX Media B.V.](https://www.eqx-media.nl "Visit the website of EQX Media B.V.").
 A company *Software Development House & Marketing Agency* from The Netherlands.
 
