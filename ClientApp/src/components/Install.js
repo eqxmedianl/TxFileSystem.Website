@@ -32,10 +32,10 @@ export class Install extends Component {
         return (
             <div>
                 <section class="latest-version row mb-4">
-                    <aside class="col-auto">
-                        <img src={latest.iconUrl} width="96" class="float-left mr-2" />
+                    <aside class="col-md-2 col-sm-12">
+                        <img src={latest.iconUrl} class="float-left mr-2 w-100" />
                     </aside>
-                    <div class="col">
+                    <div class="col-md-10 col-sm-12 mt-4 mt-md-0">
                         <header class="clearfix">
                             <h1 class="float-left">{latest.title}</h1><span class="float-left badge badge-secondary">{latest.version}</span>
                         </header>
