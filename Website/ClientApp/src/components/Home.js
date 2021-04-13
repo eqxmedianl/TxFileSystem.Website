@@ -11,43 +11,19 @@
  */
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
-import ReactMarkdown from 'react-markdown'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-
-const renderers = {
-    code: ({ language, value }) => {
-        return <SyntaxHighlighter style={dark} language={language} children={value} />
-    }
-}
+import { Readme } from "./Readme";
 
 export class Home extends Component {
     static displayName = Home.name;
 
     constructor(props) {
         super(props)
-
-        this.state = { terms: null }
     }
-
-    componentWillMount() {
-        fetch("https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/Readme.md")
-            .then((response) => response.text()).then((text) => {
-                this.setState({ terms: text })
-            })
-    }
-
 
     render () {
         return (
             <div>
-                <Helmet>
-                    <title>TxFileSystem - OpenSource .NET library</title>
-                    <meta name="description" content="TxFileSystem is a transactional filesystem wrapper using the .NET filesystem abstraction from System.IO.Abstractions" />
-                </Helmet>
-                <section class="readme-md">
-                    <ReactMarkdown renderers={renderers} source={this.state.terms} />
-                </section>
+                <Readme markDownUrl="https://raw.githubusercontent.com/eqxmedianl/EQXMedia.TxFileSystem/main/Readme.md" />
             </div>
         );
     }

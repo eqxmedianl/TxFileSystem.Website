@@ -1,0 +1,46 @@
+﻿/**
+ *
+ * The code is this file is subject to EQX Proprietary License. Therefor it is copyrighted and restricted
+ * from being copied, reproduced or redistributed by any party or indiviual other than the original
+ * copyright holder mentioned below.
+ *
+ * It's also not allowed to copy or redistribute the compiled binaries without explicit consent.
+ *
+ * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
+ *
+ */
+import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+import './Readme.css';
+
+const renderers = {
+    code: ({ language, value }) => {
+        return <SyntaxHighlighter style={vs} language={language} children={value} />
+    }
+}
+
+export class Readme extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { contents: null }
+    }
+
+    componentWillMount() {
+        fetch(this.props.markDownUrl)
+            .then((response) => response.text()).then((text) => {
+                this.setState({ contents: text })
+            })
+    }
+
+    render() {
+        return (
+            <section class="readme-md">
+                <ReactMarkdown renderers={renderers} source={this.state.contents} />
+            </section>
+        );
+    }
+}
