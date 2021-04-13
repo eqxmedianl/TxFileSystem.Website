@@ -1,12 +1,23 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-namespace txfilesystem_website
+/**
+ * 
+ * The code is this file is subject to EQX Proprietary License. Therefor it is copyrighted and restricted 
+ * from being copied, reproduced or redistributed by any party or indiviual other than the original 
+ * copyright holder mentioned below.
+ * 
+ * It's also not allowed to copy or redistribute the compiled binaries without explicit consent.
+ * 
+ * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
+ * 
+ */
+namespace TxFileSystem.Website
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)

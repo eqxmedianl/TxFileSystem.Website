@@ -1,18 +1,21 @@
-﻿namespace TxFileSystem.Website.Model
+﻿/**
+ * 
+ * The code is this file is subject to EQX Proprietary License. Therefor it is copyrighted and restricted 
+ * from being copied, reproduced or redistributed by any party or indiviual other than the original 
+ * copyright holder mentioned below.
+ * 
+ * It's also not allowed to copy or redistribute the compiled binaries without explicit consent.
+ * 
+ * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
+ * 
+ */
+namespace TxFileSystem.Website.Model
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    /// <summary>
-    /// The response to a search query.
-    ///
-    /// See https://docs.microsoft.com/en-us/nuget/api/search-query-service-resource#response
-    /// </summary>
     public sealed class SearchResponse
     {
-        /// <summary>
-        /// The packages that matched the search query.
-        /// </summary>
         [JsonProperty("data")]
         public IReadOnlyList<SearchResult> Data { get; set; }
     }
