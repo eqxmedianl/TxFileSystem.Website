@@ -22,9 +22,9 @@ export class Footer extends Component {
         return (
             <footer class="footer border-top w-100 p-2">
                 <div class="container text-center">
-                    <span class="text-muted">&copy; 2021 <a href="https://www.eqx-media.nl/" target="_blank">EQX Media B.V.</a> All rights reserved.</span> - <span>
-                        View the proprietary source <a href="https://github.com/eqxmedianl/TxFileSystem.Website" target="_blank">on GitHub.</a></span> - <span>
-                        Read the <NavLink tag={Link} className="d-inline p-0" to="/license">EQX&nbsp;Proprietary&nbsp;License</NavLink>.</span>
+                    <span class="text-muted d-block d-md-inline">&copy; 2021 <a href="https://www.eqx-media.nl/" target="_blank">EQX Media B.V.</a> All rights reserved.</span><span class="d-none d-md-inline">&nbsp;&#9733;&nbsp;</span>
+                    <span class="d-block d-md-inline">Read the <NavLink tag={Link} className="d-inline p-0" to="/license">EQX&nbsp;Proprietary&nbsp;License</NavLink>.</span><span class="d-none d-md-inline">&nbsp;&#9733;&nbsp;</span>
+                    <span class="d-block d-md-inline">View the proprietary source <a href="https://github.com/eqxmedianl/TxFileSystem.Website" target="_blank">on GitHub.</a></span>
                 </div>
             </footer>
         );
