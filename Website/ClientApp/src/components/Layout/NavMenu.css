@@ -4,6 +4,24 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.nav-item-active {
+    background: #fff !important;
+}
+
+.nav-item-active .nav-link {
+    color: #343a40 !important;
+}
+
+a.nav-link,
+a.nav-link:visited {
+    text-decoration: none;
+}
+
+a.nav-link:hover,
+a.nav-link:active {
+    text-decoration: underline;
+}
+
 html {
   font-size: 14px;
 }

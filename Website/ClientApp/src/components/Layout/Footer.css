@@ -1,0 +1,9 @@
+﻿.page-footer a.footer-link,
+.page-footer a.footer-link:visited {
+    text-decoration: none;
+}
+    
+.page-footer a.footer-link:hover,
+.page-footer a.footer-link:active {
+    text-decoration: underline;
+}

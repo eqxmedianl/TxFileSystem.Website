@@ -10,8 +10,8 @@
  *
  */
 import React, { Component } from 'react';
-import { NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
+
+import './Footer.css';
 
 export class Footer extends Component {
     constructor() {
@@ -20,11 +20,11 @@ export class Footer extends Component {
 
     render() {
         return (
-            <footer class="footer border-top w-100 p-2">
+            <footer class="page-footer footer border-top w-100 p-2 bg-dark">
                 <div class="container text-center">
-                    <span class="text-muted d-block d-md-inline">&copy; 2021 <a href="https://www.eqx-media.nl/" target="_blank">EQX Media B.V.</a> All rights reserved.</span><span class="d-none d-md-inline">&nbsp;&#9733;&nbsp;</span>
-                    <span class="text-muted d-block d-md-inline">Read the <NavLink tag={Link} className="d-inline p-0" to="/license">EQX&nbsp;Proprietary&nbsp;License</NavLink>.</span><span class="d-none d-md-inline">&nbsp;&#9733;&nbsp;</span>
-                    <span class="text-muted d-block d-md-inline">View the proprietary source <a href="https://github.com/eqxmedianl/TxFileSystem.Website" target="_blank">on GitHub.</a></span>
+                    <span class="text-muted d-block d-md-inline">&copy; 2021 <a class="text-muted footer-link" href="https://www.eqx-media.nl/" target="_blank">EQX Media B.V.</a> All rights reserved.</span><span class="d-none d-md-inline text-muted">&nbsp;&#9733;&nbsp;</span>
+                    <span class="text-muted d-block d-md-inline">Read the <a class="text-muted footer-link" href="/license">EQX&nbsp;Proprietary&nbsp;License</a>.</span><span class="d-none d-md-inline text-muted">&nbsp;&#9733;&nbsp;</span>
+                    <span class="text-muted d-block d-md-inline">View the proprietary <a class="text-muted footer-link" href="https://github.com/eqxmedianl/TxFileSystem.Website" target="_blank">source on GitHub.</a></span>
                 </div>
             </footer>
         );
