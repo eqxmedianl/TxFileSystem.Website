@@ -77,12 +77,14 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Remove="ClientApp\src\components\Controls\PackageInstallCommands.css" />
     <None Remove="ClientApp\src\components\FetchedMarkDown.css" />
     <None Remove="ClientApp\src\components\FetchedMarkDown.js" />
     <None Remove="ClientApp\src\components\Layout\Footer.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ClientApp\src\components\Controls\PackageInstallCommands.css" />
     <Content Include="ClientApp\src\components\Layout\Footer.css" />
     <Content Include="ClientApp\src\components\Layout\Footer.js" />
     <Content Include="ClientApp\src\components\Controls\FetchedMarkDown.css" />
