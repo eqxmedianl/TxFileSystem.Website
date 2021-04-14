@@ -1,5 +1,16 @@
 # Release Notes
 
+## Version 0.4.1
+
+### Changes
+* Styled menu items inside collapsed menu prettier.
+
+### Fixes
+* Contents fits better in small screen device viewports.
+
+## Technical
+* Added `systemd` service and service configuration.
+
 ## Version 0.4.0
 
 ### Changes
@@ -8,7 +19,7 @@
 
 ## Version 0.3.0
 
-### Bugs
+### Fixes
 * Fixed About.md URL.
 * Fixed incorrect license being displayed.
 * Removed duplicated header.

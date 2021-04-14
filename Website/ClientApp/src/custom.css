@@ -12,3 +12,15 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+@media (max-width: 575px) {
+
+    h1 {
+        font-size: 2rem;
+    }
+
+}
+
+.sx-auto {
+    overflow-x: auto;
+}

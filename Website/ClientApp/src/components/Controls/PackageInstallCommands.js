@@ -11,6 +11,8 @@
  */
 import React, { Component } from 'react';
 
+import './PackageInstallCommands.css';
+
 export default class PackageInstallCommands extends Component {
     constructor() {
         super()

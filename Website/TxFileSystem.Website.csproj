@@ -11,13 +11,24 @@
     <AssemblyName>TxFileSystem.Website</AssemblyName>
     <Company>EQX Media B.V.</Company>
     <Authors>Jarno Kamminga</Authors>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
     <Copyright>(c) 2021 EQX Media B.V.</Copyright>
     <PackageProjectUrl>https://txfilesystem.io</PackageProjectUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <RepositoryUrl>https://github.com/eqxmedianl/TxFileSystem.Website/</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageReleaseNotes># Release Notes
+
+## Version 0.4.1
+
+### Changes
+* Styled menu items inside collapsed menu prettier.
+
+### Fixes
+* Contents fits better in small screen device viewports.
+
+## Technical
+* Added systemd service and service configuration.
 
 ## Version 0.4.0
 
@@ -62,6 +73,8 @@
    * Added Install page.
 * Displaying EQXMedia.TxFileSystem package info, using:
    * Web API being a middleware API for several NuGet API calls.</PackageReleaseNotes>
+    <AssemblyVersion>0.4.1.0</AssemblyVersion>
+    <FileVersion>0.4.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -77,12 +90,14 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Remove="ClientApp\src\components\Controls\PackageInstallCommands.css" />
     <None Remove="ClientApp\src\components\FetchedMarkDown.css" />
     <None Remove="ClientApp\src\components\FetchedMarkDown.js" />
     <None Remove="ClientApp\src\components\Layout\Footer.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ClientApp\src\components\Controls\PackageInstallCommands.css" />
     <Content Include="ClientApp\src\components\Layout\Footer.css" />
     <Content Include="ClientApp\src\components\Layout\Footer.js" />
     <Content Include="ClientApp\src\components\Controls\FetchedMarkDown.css" />

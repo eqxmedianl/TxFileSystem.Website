@@ -22,7 +22,7 @@ export class License extends Component {
 
     render() {
         return (
-            <div class="h-100">
+            <div class="h-100 sx-auto">
                 <Helmet>
                     <title>TxFileSystem License</title>
                     <meta name="description" content="The EQX Proprietary License is applicable to TxFileSystem and displayed on this page" />
