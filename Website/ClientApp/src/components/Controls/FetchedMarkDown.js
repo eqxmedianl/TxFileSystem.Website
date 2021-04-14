@@ -26,7 +26,7 @@ export class FetchedMarkDown extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { contents: null }
+        this.state = { contents: null, sectionClass: "fetched-markdown " + this.props.sectionClass }
     }
 
     componentWillMount() {
@@ -38,7 +38,7 @@ export class FetchedMarkDown extends Component {
 
     render() {
         return (
-            <section class={this.props.sectionClass}>
+            <section class={this.state.sectionClass}>
                 <ReactMarkdown renderers={renderers} source={this.state.contents} />
             </section>
         );

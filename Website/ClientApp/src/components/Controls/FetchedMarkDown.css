@@ -1,15 +1,15 @@
-﻿.readme-md h1 {
+﻿.fetched-markdown h1 {
     margin-bottom: 1.5rem;
 }
 
-.readme-md h2 {
+.fetched-markdown h2 {
     margin: 1.25rem 0;
 }
 
-.readme-md h3 {
+.fetched-markdown h3 {
     margin-bottom: 1rem;
 }
 
-.readme-md h4 {
+.fetched-markdown h4 {
     margin: 1.5rem 0 0.75rem 0;
 }

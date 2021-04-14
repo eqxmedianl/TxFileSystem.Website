@@ -2,7 +2,7 @@
 
 While [EQX Media B.V.](https://www.eqx-media.nl "Visit the website of EQX Media B.V.") was developing a cloud application, they were in the need of a proper and extensively implemented library. Enabling them to perform transactional operations on files and directories. That way all data operations could maintain data integrity.
 
-Since no library existed that fullfilled this need, the company owner decide to develop one for the public.
+Since no library existed that fullfilled this need, the company owner decided to develop one for the public.
 
 Since the first release it has been published on NuGet.
 

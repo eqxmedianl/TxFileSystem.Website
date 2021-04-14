@@ -1,0 +1,14 @@
+[Unit]
+Description=TxFileSystem Website service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=txfilesystemio
+ExecStart=/srv/txfilesystem.io/bin/txfilesystem-website
+
+[Install]
+WantedBy=multi-user.target

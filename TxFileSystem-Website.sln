@@ -18,6 +18,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Install", "Install", "{4E479F7A-BDF3-452A-9326-6E3B494B44D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debian", "Debian", "{43639F86-DD9A-4C83-B04D-83BCE11669DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "systemd", "systemd", "{29DFED6B-7CCF-42AC-A01E-3AF76B0BC94C}"
+	ProjectSection(SolutionItems) = preProject
+		Website\Install\Debian\systemd\txfilesystem-website.service = Website\Install\Debian\systemd\txfilesystem-website.service
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "txfilesystem-website.service.d", "txfilesystem-website.service.d", "{0B882210-7384-4ADC-8405-00C993212201}"
+	ProjectSection(SolutionItems) = preProject
+		Website\Install\Debian\systemd\txfilesystem-website.service.d\00-listen-address-and-port.conf = Website\Install\Debian\systemd\txfilesystem-website.service.d\00-listen-address-and-port.conf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +57,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43639F86-DD9A-4C83-B04D-83BCE11669DD} = {4E479F7A-BDF3-452A-9326-6E3B494B44D7}
+		{29DFED6B-7CCF-42AC-A01E-3AF76B0BC94C} = {43639F86-DD9A-4C83-B04D-83BCE11669DD}
+		{0B882210-7384-4ADC-8405-00C993212201} = {29DFED6B-7CCF-42AC-A01E-3AF76B0BC94C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {30A865BB-0E0C-488B-9845-7529DA06BCDB}

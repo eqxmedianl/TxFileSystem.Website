@@ -1,5 +1,11 @@
 # Release Notes
 
+## Version 0.4.0
+
+### Changes
+* Using Dark theme for Navigation and Footer.
+* Navigation menu item of active page is highlighted now.
+
 ## Version 0.3.0
 
 ### Bugs
