@@ -80,10 +80,6 @@
     <None Remove="ClientApp\src\components\FetchedMarkDown.css" />
     <None Remove="ClientApp\src\components\FetchedMarkDown.js" />
     <None Remove="ClientApp\src\components\Layout\Footer.css" />
-    <None Include="..\License.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
