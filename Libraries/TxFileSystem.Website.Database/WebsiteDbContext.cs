@@ -10,7 +10,7 @@
         public WebsiteDbContext(DbContextOptions<WebsiteDbContext> options)
                : base(options)
         {
-            // FIXME: this should be done this way.
+            // FIXME: Use migrations and a database context factory instead
             Database.EnsureCreated();
         }
 
