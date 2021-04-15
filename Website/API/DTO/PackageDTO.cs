@@ -9,13 +9,13 @@
  * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
  * 
  */
-namespace TxFileSystem.Website.Model
+namespace TxFileSystem.Website.API.DTO
 {
     using System;
 
-    public sealed class Package
+    public sealed class PackageDTO
     {
-        public Package(Uri iconUrl, string title, string description, string version, long downloadCount, string lastUpdated)
+        public PackageDTO(Uri iconUrl, string title, string description, string version, long downloadCount, string lastUpdated)
         {
             IconUrl = iconUrl;
             Title = title;

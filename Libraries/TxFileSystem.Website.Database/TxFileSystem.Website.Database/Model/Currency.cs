@@ -1,8 +1,10 @@
 ﻿namespace TxFileSystem.Website.Database.Model
 {
+    using CurrencyEnum = Enums.Currency;
+
     public class Currency
     {
-        public Enums.Currency CurrencyId { get; set; }
+        public CurrencyEnum CurrencyId { get; set; }
 
         public string Code { get; set; }
     }

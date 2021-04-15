@@ -9,10 +9,16 @@
  * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
  * 
  */
-namespace TxFileSystem.Website.Settings
+namespace TxFileSystem.Website.NuGet
 {
-    public class PaymentServiceProvider
+    using Newtonsoft.Json;
+
+    public sealed class SearchResultVersion
     {
-        public Mollie.Mollie Mollie { get; set; }
+        [JsonProperty("version")]
+        public string Version { get; set; }
+
+        [JsonProperty("downloads")]
+        public long Downloads { get; set; }
     }
 }

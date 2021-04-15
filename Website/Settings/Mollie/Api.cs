@@ -1,6 +1,6 @@
 ﻿namespace TxFileSystem.Website.Settings.Mollie
 {
-    public sealed class MolliApi
+    public sealed class Api
     {
         public string Key { get; set; }
     }

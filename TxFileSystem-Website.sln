@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "txfilesystem-website.servic
 		Website\Install\Debian\systemd\txfilesystem-website.service.d\00-listen-address-and-port.conf = Website\Install\Debian\systemd\txfilesystem-website.service.d\00-listen-address-and-port.conf
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TxFileSystem.Website.Database", "Libraries\TxFileSystem.Website.Database\TxFileSystem.Website.Database\TxFileSystem.Website.Database.csproj", "{03746BA3-B230-48F9-B48D-0FD8F15EB30A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,18 @@ Global
 		{52AD2C6A-3CD9-4024-AA5C-135BF899EBC4}.Release|x64.Build.0 = Release|Any CPU
 		{52AD2C6A-3CD9-4024-AA5C-135BF899EBC4}.Release|x86.ActiveCfg = Release|Any CPU
 		{52AD2C6A-3CD9-4024-AA5C-135BF899EBC4}.Release|x86.Build.0 = Release|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Debug|x64.Build.0 = Debug|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Debug|x86.Build.0 = Debug|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Release|x64.ActiveCfg = Release|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Release|x64.Build.0 = Release|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Release|x86.ActiveCfg = Release|Any CPU
+		{03746BA3-B230-48F9-B48D-0FD8F15EB30A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

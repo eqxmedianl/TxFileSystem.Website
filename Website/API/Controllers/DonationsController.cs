@@ -1,4 +1,4 @@
-﻿namespace TxFileSystem.Website.Controllers
+﻿namespace TxFileSystem.Website.API.Controllers
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -12,10 +12,12 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using TxFileSystem.Website.API.DTO;
     using TxFileSystem.Website.Database;
     using TxFileSystem.Website.Model;
     using TxFileSystem.Website.Repositories;
-    using TxFileSystem.Website.Settings;
+    using TxFileSystem.Website.Results;
+    using TxFileSystem.Website.Settings.Mollie;
 
     [ApiController]
     [Route("[controller]")]
@@ -24,16 +26,16 @@
     {
         private readonly ILogger<DonationsController> _logger;
         private readonly IActionContextAccessor _accessor;
-        private readonly IOptions<PaymentServiceProvider> _paymentServiceProviderOptions;
+        private readonly IOptions<Mollie> _mollieOptions;
         private readonly DonationsRepository _donationsRepository;
 
         public DonationsController(ILogger<DonationsController> logger,
-            IOptions<PaymentServiceProvider> paymentServiceProviderOptions,
+            IOptions<Mollie> mollieOptions,
             IActionContextAccessor accessor,
             WebsiteDbContext websiteDbContext)
         {
             _logger = logger;
-            _paymentServiceProviderOptions = paymentServiceProviderOptions;
+            _mollieOptions = mollieOptions;
             _accessor = accessor;
 
             _donationsRepository = new DonationsRepository(websiteDbContext);
@@ -42,7 +44,7 @@
         [HttpPost]
         [Route("donate")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DonationPendingResult))]
-        public async Task<IActionResult> DonateAsync([FromBody] Donation donation)
+        public async Task<IActionResult> DonateAsync([FromBody] DonationDTO donation)
         {
             var refererUri = new Uri(_accessor.ActionContext.HttpContext.Request.Headers["Referer"]);
 
@@ -57,7 +59,7 @@
                     PaymentMethod.PayPal
                 }
             };
-            var paymentClient = new PaymentClient(_paymentServiceProviderOptions.Value.Mollie.Api.Key);
+            var paymentClient = new PaymentClient(_mollieOptions.Value.Api.Key);
             var paymentResponse = await paymentClient.CreatePaymentAsync(paymentRequest, includeQrCode: true);
 
             _donationsRepository.Add(paymentResponse.Id, donation.Uuid, donation.Amount,
@@ -71,12 +73,12 @@
         [HttpPost]
         [Route("state")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DonationPaymentStatusResult))]
-        public async Task<IActionResult> GetStateAsync([FromBody] Payment payment)
+        public async Task<IActionResult> GetStateAsync([FromBody] PaymentDTO payment)
         {
-            var paymentClient = new PaymentClient(_paymentServiceProviderOptions.Value.Mollie.Api.Key);
+            var paymentClient = new PaymentClient(_mollieOptions.Value.Api.Key);
             var paymentResponse = await paymentClient.GetPaymentAsync(payment.TransactionId);
 
-            _donationsRepository.UpdateState(paymentResponse.Id, paymentResponse.Status);
+            _donationsRepository.UpdateState(paymentResponse);
 
             _logger.LogInformation("Update payment status obtained from Mollie for {paymentId}.", payment.TransactionId);
 

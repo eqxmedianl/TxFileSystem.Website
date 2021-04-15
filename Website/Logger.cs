@@ -11,7 +11,7 @@
  */
 namespace TxFileSystem.Website
 {
-    using NuGet.Common;
+    using global::NuGet.Common;
     using System.Threading.Tasks;
 
     public class Logger : ILogger

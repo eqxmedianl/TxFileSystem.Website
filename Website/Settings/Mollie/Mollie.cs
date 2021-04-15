@@ -2,6 +2,6 @@
 {
     public sealed class Mollie
     {
-        public MolliApi Api { get; set; }
+        public Api Api { get; set; }
     }
 }

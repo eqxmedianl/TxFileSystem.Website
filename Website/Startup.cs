@@ -20,7 +20,7 @@ namespace TxFileSystem.Website
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using TxFileSystem.Website.Database;
-    using TxFileSystem.Website.Settings;
+    using TxFileSystem.Website.Settings.Mollie;
 
     public class Startup
     {
@@ -39,7 +39,7 @@ namespace TxFileSystem.Website
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
-            services.Configure<PaymentServiceProvider>(Configuration.GetSection("PSP"));
+            services.Configure<Mollie>(Configuration.GetSection("Mollie"));
 
             services.AddControllersWithViews();
 

@@ -9,16 +9,20 @@
  * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
  * 
  */
-namespace TxFileSystem.Website.Model
+namespace TxFileSystem.Website.NuGet
 {
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
-    public sealed class SearchResultVersion
+    public sealed class SearchResult
     {
-        [JsonProperty("version")]
-        public string Version { get; set; }
+        [JsonProperty("id")]
+        public string PackageId { get; set; }
 
-        [JsonProperty("downloads")]
-        public long Downloads { get; set; }
+        [JsonProperty("totalDownloads")]
+        public long TotalDownloads { get; set; }
+
+        [JsonProperty("versions")]
+        public IReadOnlyList<SearchResultVersion> Versions { get; set; }
     }
 }

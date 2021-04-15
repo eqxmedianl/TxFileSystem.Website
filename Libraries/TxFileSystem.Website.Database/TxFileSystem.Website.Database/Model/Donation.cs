@@ -28,12 +28,12 @@
         [Required]
         public MolliePayment Payment { get; set; }
 
-        public string Uuid { get; internal set; }
+        public string Uuid { get; set; }
 
         [Required]
-        public DateTime DateAdded { get; internal set; }
+        public DateTime DateAdded { get; set; }
 
         [Required]
-        public DateTime LastUpdated { get; internal set; }
+        public DateTime LastUpdated { get; set; }
     }
 }

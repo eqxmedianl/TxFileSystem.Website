@@ -1,8 +1,8 @@
-﻿namespace TxFileSystem.Website.Model
+﻿namespace TxFileSystem.Website.API.DTO
 {
     using Newtonsoft.Json;
 
-    public sealed class Payment
+    public sealed class PaymentDTO
     {
         [JsonProperty("transactionId")]
         public string TransactionId { get; set; }

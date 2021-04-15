@@ -1,8 +1,10 @@
 ﻿namespace TxFileSystem.Website.Database.Model
 {
+    using DonationStateEnum = Enums.DonationState;
+
     public class DonationState
     {
-        public Enums.DonationState DonationStateId { get; set; }
+        public DonationStateEnum DonationStateId { get; set; }
 
         public string Description { get; set; }
     }

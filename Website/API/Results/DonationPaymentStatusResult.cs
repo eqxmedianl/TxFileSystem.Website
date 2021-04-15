@@ -1,4 +1,4 @@
-﻿namespace TxFileSystem.Website.Model
+﻿namespace TxFileSystem.Website.Results
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;

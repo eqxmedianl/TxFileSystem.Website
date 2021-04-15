@@ -1,4 +1,4 @@
-﻿namespace TxFileSystem.Website.Database.Model.Enums
+﻿namespace TxFileSystem.Website.Database.Enums
 {
     public enum DonationState
     {

@@ -41,8 +41,8 @@
 
             modelBuilder
                 .Entity<Currency>().HasData(
-                    Enum.GetValues(typeof(Model.Enums.Currency))
-                        .Cast<Model.Enums.Currency>()
+                    Enum.GetValues(typeof(Enums.Currency))
+                        .Cast<Enums.Currency>()
                         .Select(c => new Currency()
                         {
                             CurrencyId = c,
@@ -55,8 +55,8 @@
 
             modelBuilder
                 .Entity<DonationState>().HasData(
-                    Enum.GetValues(typeof(Model.Enums.DonationState))
-                        .Cast<Model.Enums.DonationState>()
+                    Enum.GetValues(typeof(Enums.DonationState))
+                        .Cast<Enums.DonationState>()
                         .Select(s => new DonationState()
                         {
                             DonationStateId = s,
