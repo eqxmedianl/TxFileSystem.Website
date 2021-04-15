@@ -3,6 +3,11 @@
 ## Version 0.4.1
 
 ### Changes
+* `[WIP]` Added support for making donations using Mollie.
+
+## Version 0.4.1
+
+### Changes
 * Styled menu items inside collapsed menu prettier.
 
 ### Fixes
