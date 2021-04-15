@@ -17,6 +17,7 @@ import { Layout } from './components/Layout/Layout';
 
 import { Home } from './components/Pages/Home';
 import { About } from './components/Pages/About';
+import { Donate } from './components/Pages/Donate';
 import { License } from './components/Pages/License';
 import { Install } from './components/Pages/Install';
 
@@ -48,6 +49,7 @@ render () {
             </Helmet>
             <Route exact path='/' component={Home} />
             <Route path='/install' component={Install} />
+            <Route path='/donate' component={Donate} />
             <Route path='/license' component={License} />
             <Route path='/about' component={About} />
         </Layout>

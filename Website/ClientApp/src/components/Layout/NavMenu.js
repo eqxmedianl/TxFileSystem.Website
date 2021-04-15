@@ -27,7 +27,8 @@ export class NavMenu extends Component {
             menuItems: [
                 { Url: '/',        Label: 'Home' },
                 { Url: '/install', Label: 'Install' },
-                { Url: '/about', Label: 'About' }
+                { Url: '/donate', Label: 'Donate' },
+                { Url: '/about',   Label: 'About' }
             ],
             active: null
         };
