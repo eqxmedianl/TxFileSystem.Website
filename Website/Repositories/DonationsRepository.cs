@@ -17,18 +17,18 @@
             _websiteDbContext = websiteDbContext;
         }
 
-        internal void Add(string id, string uuid, double amount)
+        internal void Add(string paymentId, string uuid, double amount, DateTime? createdAt, DateTime? expiresAt)
         {
             var currency = _websiteDbContext.Currencies.First(c => c.CurrencyId == CurrencyEnum.EUR);
             var donationState = _websiteDbContext.DonationStates.First(s => s.DonationStateId == DonationStateEnum.Pending);
 
-            _websiteDbContext.Add(new Donation()
+            _websiteDbContext.Donations.Add(new Donation()
             {
                 Amount = amount,
                 Currency = currency,
                 State = donationState,
-                PaymentId = id,
-                Uuid = uuid
+                Uuid = uuid,
+                Payment = new MolliePayment(paymentId, createdAt, expiresAt)
             });
 
             _websiteDbContext.SaveChanges();
@@ -41,10 +41,11 @@
                 .First(s => s.ToString().ToLower() == status.ToLower());
 
             var donationState = _websiteDbContext.DonationStates.First(s => s.DonationStateId == lookedUpDonationState);
-            var donation = _websiteDbContext.Donations.FirstOrDefault(d => d.PaymentId == paymentId);
+            var donation = _websiteDbContext.Donations.FirstOrDefault(d => d.Payment.PaymentId == paymentId);
             if (donation != null)
             {
                 donation.State = donationState;
+                donation.LastUpdated = DateTime.UtcNow;
 
                 _websiteDbContext.SaveChanges();
             }

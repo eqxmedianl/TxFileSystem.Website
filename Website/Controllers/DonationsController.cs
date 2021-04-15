@@ -44,13 +44,13 @@
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DonationPendingResult))]
         public async Task<IActionResult> DonateAsync([FromBody] Donation donation)
         {
-            var serverAddress = _accessor.ActionContext.HttpContext.Request.Scheme + "://" +
-                _accessor.ActionContext.HttpContext.Request.Host;
+            var refererUri = new Uri(_accessor.ActionContext.HttpContext.Request.Headers["Referer"]);
+
             var paymentRequest = new PaymentRequest()
             {
                 Amount = new Amount(Currency.EUR, new Decimal(donation.Amount)),
                 Description = "Donation for EQXMedia.TxFileSystem",
-                RedirectUrl = serverAddress + "/donate",
+                RedirectUrl = refererUri.AbsoluteUri,
                 Methods = new List<string>() {
                     PaymentMethod.Ideal,
                     PaymentMethod.CreditCard,
@@ -60,7 +60,8 @@
             var paymentClient = new PaymentClient(_paymentServiceProviderOptions.Value.Mollie.Api.Key);
             var paymentResponse = await paymentClient.CreatePaymentAsync(paymentRequest, includeQrCode: true);
 
-            _donationsRepository.Add(paymentResponse.Id, donation.Uuid, donation.Amount);
+            _donationsRepository.Add(paymentResponse.Id, donation.Uuid, donation.Amount,
+                paymentResponse.CreatedAt, paymentResponse.ExpiresAt);
 
             _logger.LogInformation("Created payment request using Mollie for {uuid}.", donation.Uuid);
 

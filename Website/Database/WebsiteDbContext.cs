@@ -11,7 +11,6 @@
                : base(options)
         {
             // FIXME: this should be done this way.
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -21,12 +20,14 @@
 
         public DbSet<Currency> Currencies { get; set; }
 
+        public DbSet<MolliePayment> MolliePayments { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
 
             // FIXME: Use MySQL instead eventually
-            optionsBuilder.UseSqlite("Data Source=donations.db");
+            optionsBuilder.UseSqlite("Data Source=C:\\Temp\\donations.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,8 +35,8 @@
             base.OnModelCreating(modelBuilder);
 
             modelBuilder
-                .Entity<Donation>()
-                .HasIndex(d => d.PaymentId)
+                .Entity<MolliePayment>()
+                .HasIndex(p => p.PaymentId)
                 .IsUnique(unique: true);
 
             modelBuilder

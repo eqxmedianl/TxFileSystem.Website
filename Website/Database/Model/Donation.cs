@@ -1,9 +1,18 @@
 ﻿namespace TxFileSystem.Website.Database.Model
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class Donation
     {
+        public Donation()
+        {
+            var utcNow = DateTime.UtcNow;
+
+            this.DateAdded = utcNow;
+            this.LastUpdated = utcNow;
+        }
+
         [Key]
         public long Id { get; set; }
 
@@ -16,8 +25,15 @@
         [Required]
         public DonationState State { get; set; }
 
-        public string PaymentId { get; set; }
+        [Required]
+        public MolliePayment Payment { get; set; }
 
         public string Uuid { get; internal set; }
+
+        [Required]
+        public DateTime DateAdded { get; internal set; }
+
+        [Required]
+        public DateTime LastUpdated { get; internal set; }
     }
 }

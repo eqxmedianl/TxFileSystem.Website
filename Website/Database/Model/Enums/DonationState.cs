@@ -2,11 +2,11 @@
 {
     public enum DonationState
     {
-        Pending = 0,
-        Open = 1,
-        Authorized = 2,
-        Expired = 3,
-        Failed = 4,
-        Paid = 5
+        Pending = 1,
+        Open = 2,
+        Authorized = 3,
+        Expired = 4,
+        Failed = 5,
+        Paid = 6
     }
 }

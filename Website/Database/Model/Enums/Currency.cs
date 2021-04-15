@@ -2,24 +2,24 @@
 {
     public enum Currency
     {
-        AUD = 0,
-        CHF = 1,
-        SEK = 2,
-        RON = 3,
-        GBP = 4,
-        PLN = 5,
-        NOK = 6,
-        JPY = 7,
-        USD = 8,
-        ILS = 9,
-        HUF = 10,
-        HKD = 11,
-        DKK = 12,
-        CZK = 13,
-        HRK = 14,
-        CAD = 15,
-        BGN = 16,
-        ISK = 17,
-        EUR = 18
+        AUD = 1,
+        CHF = 2,
+        SEK = 3,
+        RON = 4,
+        GBP = 5,
+        PLN = 6,
+        NOK = 7,
+        JPY = 8,
+        USD = 9,
+        ILS = 10,
+        HUF = 11,
+        HKD = 12,
+        DKK = 13,
+        CZK = 14,
+        HRK = 15,
+        CAD = 16,
+        BGN = 17,
+        ISK = 18,
+        EUR = 19
     }
 }
