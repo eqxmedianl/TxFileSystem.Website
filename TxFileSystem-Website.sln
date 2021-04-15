@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "txfilesystem-website.servic
 		Website\Install\Debian\systemd\txfilesystem-website.service.d\00-listen-address-and-port.conf = Website\Install\Debian\systemd\txfilesystem-website.service.d\00-listen-address-and-port.conf
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TxFileSystem.Website.Database", "Libraries\TxFileSystem.Website.Database\TxFileSystem.Website.Database\TxFileSystem.Website.Database.csproj", "{03746BA3-B230-48F9-B48D-0FD8F15EB30A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TxFileSystem.Website.Database", "Libraries\TxFileSystem.Website.Database\TxFileSystem.Website.Database.csproj", "{03746BA3-B230-48F9-B48D-0FD8F15EB30A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
