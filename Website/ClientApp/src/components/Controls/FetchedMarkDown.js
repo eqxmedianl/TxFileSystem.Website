@@ -23,6 +23,7 @@ const renderers = {
 }
 
 export class FetchedMarkDown extends Component {
+
     constructor(props) {
         super(props);
 
@@ -43,4 +44,5 @@ export class FetchedMarkDown extends Component {
             </section>
         );
     }
+
 }

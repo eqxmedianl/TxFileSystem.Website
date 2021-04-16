@@ -99,12 +99,12 @@ export class Donate extends Component {
                 <DonateButtonBar onDonate={this.handleDonate} />
             </div>;
         }
-        else if (this.state.paymentId != null && this.state.paymentStatus == 'open') {
+        else if (this.state.paymentId != null && this.state.paymentStatus === 'open') {
             title = "Finish donating to TxFileSystem";
             contents = <div>
-                <a href="#" onClick={e => this.finishPayment(e, this.state.paymentId)}>
+                <button onClick={e => this.finishPayment(e, this.state.paymentId)}>
                     Finish the {this.state.paymentStatus} payment
-                </a>
+                </button>
             </div>;
         }
         else if (this.state.paymentId != null && this.state.paymentStatus != null) {

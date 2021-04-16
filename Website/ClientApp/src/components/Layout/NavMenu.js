@@ -25,10 +25,10 @@ export class NavMenu extends Component {
         this.state = {
             collapsed: true,
             menuItems: [
-                { Url: '/',        Label: 'Home' },
-                { Url: '/install', Label: 'Install' },
-                { Url: '/donate', Label: 'Donate' },
-                { Url: '/about',   Label: 'About' }
+                { Key: 'home',    Url: '/',        Label: 'Home' },
+                { Key: 'install', Url: '/install', Label: 'Install' },
+                { Key: 'donate',  Url: '/donate',  Label: 'Donate' },
+                { Key: 'about',   Url: '/about',   Label: 'About' }
             ],
             active: null
         };
@@ -61,7 +61,7 @@ export class NavMenu extends Component {
                     }
 
                     return (
-                        <NavItem className={className}>
+                        <NavItem className={className} key={menuItem.Key}>
                             <NavLink tag={Link} to={menuItem.Url} onClick={this._handleClick.bind(this, menuItem)}
                                 className="text-white">
                                 {menuItem.Label}</NavLink>

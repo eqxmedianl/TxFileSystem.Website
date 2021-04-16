@@ -12,6 +12,7 @@
 import React, { Component } from 'react';
 
 export default class DonateButton extends Component {
+
     constructor(props) {
         super(props);
 
@@ -26,11 +27,12 @@ export default class DonateButton extends Component {
     render() {
         let classNames = "btn-default btn-donate btn-donate-" + this.props.amount;
         return (
-            <div class={classNames}>
-                <a href="#" onClick={this.handleClick}>
+            <div className={classNames}>
+                <button onClick={this.handleClick}>
                     Donate {this.props.amount}
-                </a>
+                </button>
             </div>
         );
     }
+
 }

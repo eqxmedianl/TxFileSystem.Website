@@ -27,7 +27,7 @@ export class Install extends Component {
     handleClick(e, version) {
         e.preventDefault();
         console.log('this is:', version);
-        this.state.latest_version = version;
+        this.setState({ latest_version: version });
     }
 
     handleVersionChange(version) {

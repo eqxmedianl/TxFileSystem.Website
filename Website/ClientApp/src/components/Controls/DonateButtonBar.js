@@ -14,6 +14,7 @@ import React, { Component } from 'react';
 import DonateButton from './DonateButton';
 
 export default class DonateButtonBar extends Component {
+
     constructor(props) {
         super(props);
 
@@ -26,7 +27,7 @@ export default class DonateButtonBar extends Component {
 
     render() {
         return (
-            <div class="btnbar-donate">
+            <div className="btnbar-donate">
                 <DonateButton amount="10" onDonate={this.handleClick} />
                 <DonateButton amount="20" onDonate={this.handleClick} />
                 <DonateButton amount="50" onDonate={this.handleClick} />
@@ -34,4 +35,5 @@ export default class DonateButtonBar extends Component {
             </div>
         );
     }
+
 }

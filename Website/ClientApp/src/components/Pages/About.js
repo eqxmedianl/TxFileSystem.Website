@@ -16,10 +16,6 @@ import { FetchedMarkDown } from "../Controls/FetchedMarkDown";
 export class About extends Component {
     static displayName = About.name;
 
-    constructor(props) {
-        super(props)
-    }
-
     render () {
         return (
             <div>
@@ -32,4 +28,5 @@ export class About extends Component {
             </div>
         );
     }
+
 }

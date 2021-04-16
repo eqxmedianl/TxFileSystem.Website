@@ -13,8 +13,7 @@ import React, { Component } from 'react';
 
 export default class VersionLink extends Component {
     constructor() {
-        super()
-        // This binding is necessary to make `this` work in the callback
+        super();
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -26,9 +25,9 @@ export default class VersionLink extends Component {
 
     render() {
         return (
-            <a href="#" onClick={this.handleClick}>
+            <button onClick={this.handleClick}>
                 {this.props.version}
-            </a>
+            </button>
         );
     }
 }
