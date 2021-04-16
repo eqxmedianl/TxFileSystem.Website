@@ -10,9 +10,11 @@
  *
  */
 import React, { Component } from 'react';
-import { Helmet } from "react-helmet";
+import Helmet from "react-helmet";
 import uuid from 'react-uuid'
 import Cookies from 'universal-cookie';
+
+import DonateButtonBar from '../Controls/DonateButtonBar';
 
 // FIXME: WIP needs heavy lifting.
 export class Donate extends Component {
@@ -21,7 +23,7 @@ export class Donate extends Component {
     constructor(props) {
         super(props)
 
-        this.handleClick = this.handleClick.bind(this);
+        this.handleDonate = this.handleDonate.bind(this);
 
         const cookies = new Cookies();
         let transaction_id = cookies.get('transaction_id');
@@ -42,10 +44,33 @@ export class Donate extends Component {
         }
     }
 
-    handleClick(e, amount) {
-        e.preventDefault();
+    componentDidMount() {
+    }
+
+    doDonate(amount) {
         console.log("Starting to donate " + amount + " EUR");
-        this.doDonate(amount);
+
+        let data = {
+            amount: amount,
+            uuid: uuid()
+        };
+
+        fetch('donations/donate',
+            {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(data => {
+                let pendingDonation = JSON.parse(data);
+
+                const cookies = new Cookies();
+                cookies.set('transaction_id', pendingDonation.transactionId, { path: '/donate' });
+                cookies.set('checkout_url', pendingDonation.checkoutUrl, { path: '/donate' });
+
+                window.location.href = pendingDonation.checkoutUrl;
+            });
     }
 
     finishPayment(e, paymentId) {
@@ -58,7 +83,8 @@ export class Donate extends Component {
         }
     }
 
-    componentDidMount() {
+    handleDonate(amount) {
+        this.doDonate(amount);
     }
 
     render() {
@@ -70,21 +96,7 @@ export class Donate extends Component {
             contents = <div>
                 Thanks for your donation<br />
                 <br />
-                <div>
-                    <a href="#" onClick={e => this.handleClick(e, 10)}>
-                        Donate 10 EUR
-                    </a>
-                </div>
-                <div>
-                    <a href="#" onClick={e => this.handleClick(e, 20)}>
-                        Donate 20 EUR
-                        </a>
-                </div>
-                <div>
-                    <a href="#" onClick={e => this.handleClick(e, 50)}>
-                        Donate 50 EUR
-                        </a>
-                </div>
+                <DonateButtonBar onDonate={this.handleDonate} />
             </div>;
         }
         else if (this.state.paymentId != null && this.state.paymentStatus == 'open') {
@@ -108,21 +120,7 @@ export class Donate extends Component {
         else {
             title = "Make a donation for TxFileSystem";
             contents = <div>
-                <div>
-                    <a href="#" onClick={e => this.handleClick(e, 10)}>
-                        Donate 10 EUR
-                    </a>
-                </div>
-                <div>
-                    <a href="#" onClick={e => this.handleClick(e, 20)}>
-                        Donate 20 EUR
-                        </a>
-                </div>
-                <div>
-                    <a href="#" onClick={e => this.handleClick(e, 50)}>
-                        Donate 50 EUR
-                        </a>
-                </div>
+                <DonateButtonBar onDonate={this.handleDonate} />
             </div>;
         }
 
@@ -148,8 +146,8 @@ export class Donate extends Component {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: body
-            }).
-            then(response => response.text())
+            })
+            .then(response => response.text())
             .then(data => {
                 let paymentStatusResult = JSON.parse(data);
 
@@ -163,30 +161,6 @@ export class Donate extends Component {
                     paymentId: paymentStatusResult.paymentId,
                     paymentStatus: paymentStatusResult.status
                 });
-            });
-    }
-
-    doDonate(amount) {
-        let data = {
-            amount: amount,
-            uuid: uuid()
-        };
-
-        fetch('donations/donate',
-            {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).
-            then(response => response.text())
-            .then(data => {
-                let pendingDonation = JSON.parse(data);
-
-                const cookies = new Cookies();
-                cookies.set('transaction_id', pendingDonation.transactionId, { path: '/donate' });
-                cookies.set('checkout_url', pendingDonation.checkoutUrl, { path: '/donate' });
-
-                window.location.href = pendingDonation.checkoutUrl;
             });
     }
 }
