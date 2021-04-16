@@ -17,18 +17,15 @@ export default class DonateButton extends Component {
     }
 
     handleClick() {
-        console.log(this.props.amount);
         this.props.onDonate(this.props.amount);
     }
 
     render() {
-        let classNames = "btn-default btn-donate btn-donate-" + this.props.amount;
+        let classNames = "btn btn-primary btn-lg btn-donate btn-donate-" + this.props.amount;
         return (
-            <div className={classNames}>
-                <button onClick={this.handleClick}>
-                    Donate {this.props.amount}
-                </button>
-            </div>
+            <button className={classNames} type="button" onClick={this.handleClick}>
+                {this.props.amount}&nbsp;{this.props.currency}
+            </button>
         );
     }
 

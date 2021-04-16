@@ -116,9 +116,31 @@ export class Donate extends Component {
         }
         else {
             title = "Make a donation for TxFileSystem";
-            contents = <div>
-                <DonateButtonBar onDonate={this.handleDonate} />
-            </div>;
+            contents = <main>
+                <article>
+                    <h1>Donate to support TxFileSystem Development</h1>
+                    <p><acronym title="Transactional FileSystem">TxFileSystem</acronym> is a completely free .NET library, licensed
+                        under the BSD license, and will remain licensed in this manner and always stay free of charge.</p>
+                    <p>In short, this means you can download it and install it to your coorporate and community projects, and
+                        start using it to improve your application with. Using it one can maintain data integrity, even when
+                        there is a need for classic file IO.</p>
+                    <p>All design and development of this free .NET library takes place in time funded by us. We are EQX Media B.V., 
+                        a <i>Software Development House & Marketing Agency</i> from The Netherlands.</p>
+                    <p>To reduce our costs for the development of this OpenSource project and/or express your gratitude you can
+                        make a donation. Donations are very welcome! We thank you for your kindness upfront.</p>
+                    <p>When you choose to make a donation you get the chance the enter details about you or your company. That
+                        information you supply will be listed below.</p>
+                </article>
+                <section className="text-center">
+                    <DonateButtonBar onDonate={this.handleDonate} />
+                </section>
+                <section className="donors">
+                    <h2>Donors</h2>
+                    <div class="alert alert-danger">
+                        <strong>FIXME</strong> The list of donors should still be designed and implemented.
+                    </div>
+                </section>
+            </main>;
         }
 
         return (
