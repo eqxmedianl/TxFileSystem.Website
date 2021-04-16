@@ -28,7 +28,7 @@ export default class DonateButtonBar extends Component {
         return (
             <section className="btnbar-donate">
                 <h2>Donate</h2>
-                <div class="btn-group btn-group-donate">
+                <div className="btn-group btn-group-donate">
                     <DonateButton amount="10" currency={this.state.currency} onDonate={this.handleClick} />
                     <DonateButton amount="20" currency={this.state.currency} onDonate={this.handleClick} />
                     <DonateButton amount="50" currency={this.state.currency} onDonate={this.handleClick} />
