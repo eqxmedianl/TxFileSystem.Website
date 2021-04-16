@@ -79,11 +79,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.5" />
-    <PackageReference Include="Mollie.Api" Version="2.1.0.5" />
     <PackageReference Include="NuGet.Client" Version="4.2.0" />
-    <PackageReference Include="NuGet.Logging" Version="3.4.3" />
     <PackageReference Include="NuGet.Protocol" Version="5.9.0" />
-    <PackageReference Include="NuGet.Repositories" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -106,7 +103,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Libraries\TxFileSystem.Website.Database\TxFileSystem.Website.Database\TxFileSystem.Website.Database.csproj" />
+    <ProjectReference Include="..\Libraries\TxFileSystem.Website.Database\TxFileSystem.Website.Database.csproj" />
+    <ProjectReference Include="..\Libraries\TxFileSystem.Website.NuGet\TxFileSystem.Website.NuGet.csproj" />
+    <ProjectReference Include="..\Libraries\TxFileSystem.Website.Repositories\TxFileSystem.Website.Repositories.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

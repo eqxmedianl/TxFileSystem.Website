@@ -1,4 +1,4 @@
-﻿namespace TxFileSystem.Website.API.Controllers
+﻿namespace TxFileSystem.Website.Controllers
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;

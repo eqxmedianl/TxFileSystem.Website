@@ -19,7 +19,7 @@
             _websiteDbContext = websiteDbContext;
         }
 
-        internal void Add(string paymentId, string uuid, double amount, DateTime? createdAt, DateTime? expiresAt)
+        public void Add(string paymentId, string uuid, double amount, DateTime? createdAt, DateTime? expiresAt)
         {
             var currency = _websiteDbContext.Currencies.First(c => c.CurrencyId == CurrencyEnum.EUR);
             var donationState = _websiteDbContext.DonationStates.First(s => s.DonationStateId == DonationStateEnum.Pending);
@@ -34,25 +34,29 @@
             });
 
             _websiteDbContext.SaveChanges();
-
-            PurgeExpired();
         }
 
-        internal void PurgeExpired()
+        public void PurgeExpired()
         {
+            // FIXME: Update the state of the donations using the Mollie API before purging actually expired payments.
+
             var now = DateTime.UtcNow;
 
             var expiredDonations = _websiteDbContext.Donations
                 .Include(d => d.Payment)
-                .Where(d => d.Payment.ExpiresAt <= now)
+                .Where(d => d.Payment.ExpiresAt <= now && !d.Payment.PaidAt.HasValue)
+                .ToList();
+
+            var expiredPayments = expiredDonations.Select(d => d.Payment)
                 .ToList();
 
             _websiteDbContext.Donations.RemoveRange(expiredDonations);
+            _websiteDbContext.MolliePayments.RemoveRange(expiredPayments);
 
             _websiteDbContext.SaveChanges();
         }
 
-        internal void UpdateState(PaymentResponse paymentResponse)
+        public void UpdateState(PaymentResponse paymentResponse)
         {
             var lookedUpDonationState = Enum.GetValues(typeof(DonationStateEnum))
                 .Cast<DonationStateEnum>()
@@ -73,8 +77,6 @@
 
                 _websiteDbContext.SaveChanges();
             }
-
-            PurgeExpired();
         }
     }
 }

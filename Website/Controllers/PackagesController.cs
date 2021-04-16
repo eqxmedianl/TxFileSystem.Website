@@ -9,7 +9,7 @@
  * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
  * 
  */
-namespace TxFileSystem.Website.API.Controllers
+namespace TxFileSystem.Website.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;

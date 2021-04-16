@@ -9,7 +9,7 @@
  * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
  * 
  */
-namespace TxFileSystem.Website
+namespace TxFileSystem.Website.NuGet
 {
     using global::NuGet.Common;
     using System.Threading.Tasks;
@@ -27,17 +27,6 @@ namespace TxFileSystem.Website
         }
 
         public Task LogAsync(LogLevel level, string data)
-        {
-            //throw new NotImplementedException();
-            return Task.CompletedTask;
-        }
-
-        public void Log(ILogMessage message)
-        {
-            //throw new NotImplementedException();
-        }
-
-        public Task LogAsync(ILogMessage message)
         {
             //throw new NotImplementedException();
             return Task.CompletedTask;
@@ -69,6 +58,11 @@ namespace TxFileSystem.Website
         }
 
         public void LogError(string data)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void LogErrorSummary(string data)
         {
             //throw new NotImplementedException();
         }
