@@ -93,28 +93,11 @@ export class Donate extends Component {
     render() {
         let title;
         let contents;
+                
+        if ((this.state.paymentId == null && this.state.paymentStatus == null) || this.state.paymentStatus == 'paid') {
 
-        if (this.state.paymentId != null && this.state.paymentStatus === 'open') {
-            title = "Finish donating to TxFileSystem";
-            contents = <div>
-                <button onClick={e => this.finishPayment(e, this.state.paymentId)}>
-                    Finish the {this.state.paymentStatus} payment
-                </button>
-            </div>;
-        }
-        else if (this.state.paymentId != null && this.state.paymentStatus != null && this.state.paymentStatus != 'paid') {
-            title = "Failed to donate to TxFileSystem";
-            contents = <div>
-                <strong>Payment Id:</strong><br />
-                {this.state.paymentId}<br />
-                <br />
-                <strong>Payment Status:</strong><br />
-                {this.state.paymentStatus}<br />
-            </div>;
-        }
-        else {
             let toast = '';
-            if (this.state.donated) {
+            if (this.state.paymentStatus === 'paid') {
                 toast = <Toast style={{ position: 'absolute', top: '4rem', right: '2rem' }} autohide="true"
                     delay="5000">
                     <Toast.Header>
@@ -134,9 +117,9 @@ export class Donate extends Component {
                     <p><acronym title="Transactional FileSystem">TxFileSystem</acronym> is a completely free .NET library, licensed
                         under the BSD license, and will remain licensed in this manner and always stay free of charge.</p>
                     <p>In short, this means you can download it and install it to your coorporate and community projects, and
-                        start using it to improve your application with. Using it one can maintain data integrity, even when
+                    start using it to improve your application with. Using it one can maintain data integrity, even when
                         there is a need for classic file IO.</p>
-                    <p>All design and development of this free .NET library takes place in time funded by us. We are EQX Media B.V., 
+                    <p>All design and development of this free .NET library takes place in time funded by us. We are EQX Media B.V.,
                         a <i>Software Development House & Marketing Agency</i> from The Netherlands.</p>
                     <p>To reduce our costs for the development of this OpenSource project and/or express your gratitude you can
                         make a donation. Donations are very welcome! We thank you for your kindness upfront.</p>
@@ -146,6 +129,29 @@ export class Donate extends Component {
                 <DonateButtonBar onDonate={this.handleDonate} />
                 <DonorsListing />
             </main>;
+
+        }
+        else if (this.state.paymentId != null && this.state.paymentStatus === 'open') {
+
+            title = "Finish donating to TxFileSystem";
+            contents = <div>
+                <button onClick={e => this.finishPayment(e, this.state.paymentId)}>
+                    Finish the {this.state.paymentStatus} payment
+                </button>
+            </div>;
+
+        }
+        else if (this.state.paymentId != null && this.state.paymentStatus != null && this.state.paymentStatus != 'paid') {
+
+            title = "Failed to donate to TxFileSystem";
+            contents = <div>
+                <strong>Payment Id:</strong><br />
+                {this.state.paymentId}<br />
+                <br />
+                <strong>Payment Status:</strong><br />
+                {this.state.paymentStatus}<br />
+            </div>;
+
         }
 
         return (
@@ -175,13 +181,10 @@ export class Donate extends Component {
             .then(data => {
                 let paymentStatusResult = JSON.parse(data);
 
-                let donated = (paymentStatusResult.status === 'paid');
-
                 const cookies = new Cookies();
                 cookies.remove('transaction_id', { path: '/donate' });
 
                 this.setState({
-                    donated: donated,
                     paymentId: paymentStatusResult.paymentId,
                     paymentStatus: paymentStatusResult.status
                 });
