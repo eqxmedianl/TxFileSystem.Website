@@ -12,6 +12,7 @@ import uuid from 'react-uuid'
 import Cookies from 'universal-cookie';
 
 import DonateButtonBar from '../Controls/DonateButtonBar';
+import DonorsListing from '../Controls/DonorsListing';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Toast from 'react-bootstrap/Toast'
 
@@ -142,15 +143,8 @@ export class Donate extends Component {
                     <p>When you choose to make a donation you get the chance the enter details about you or your company. That
                         information you supply will be listed below.</p>
                 </article>
-                <section className="text-center">
-                    <DonateButtonBar onDonate={this.handleDonate} />
-                </section>
-                <section className="donors">
-                    <h2>Donors</h2>
-                    <div className="alert alert-danger">
-                        <strong>FIXME</strong> The list of donors should still be designed and implemented.
-                    </div>
-                </section>
+                <DonateButtonBar onDonate={this.handleDonate} />
+                <DonorsListing />
             </main>;
         }
 
