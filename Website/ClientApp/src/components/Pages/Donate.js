@@ -12,6 +12,10 @@ import uuid from 'react-uuid'
 import Cookies from 'universal-cookie';
 
 import DonateButtonBar from '../Controls/DonateButtonBar';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Toast from 'react-bootstrap/Toast'
+
+import './Donate.css';
 
 // FIXME: WIP needs heavy lifting.
 export class Donate extends Component {
@@ -32,7 +36,8 @@ export class Donate extends Component {
             loading: true,
             transaction_id: transaction_id,
             paymentId: null,
-            paymentStatus: null
+            paymentStatus: null,
+            donatedWhen: 'just now'
         };
 
         if (this.state.transaction_id != null) {
@@ -88,15 +93,7 @@ export class Donate extends Component {
         let title;
         let contents;
 
-        if (this.state.donated) {
-            title = "Thanks for donating to TxFileSystem";
-            contents = <div>
-                Thanks for your donation<br />
-                <br />
-                <DonateButtonBar onDonate={this.handleDonate} />
-            </div>;
-        }
-        else if (this.state.paymentId != null && this.state.paymentStatus === 'open') {
+        if (this.state.paymentId != null && this.state.paymentStatus === 'open') {
             title = "Finish donating to TxFileSystem";
             contents = <div>
                 <button onClick={e => this.finishPayment(e, this.state.paymentId)}>
@@ -104,7 +101,7 @@ export class Donate extends Component {
                 </button>
             </div>;
         }
-        else if (this.state.paymentId != null && this.state.paymentStatus != null) {
+        else if (this.state.paymentId != null && this.state.paymentStatus != null && this.state.paymentStatus != 'paid') {
             title = "Failed to donate to TxFileSystem";
             contents = <div>
                 <strong>Payment Id:</strong><br />
@@ -115,8 +112,22 @@ export class Donate extends Component {
             </div>;
         }
         else {
+            let toast = '';
+            if (this.state.donated) {
+                toast = <Toast style={{ position: 'absolute', top: '4rem', right: '2rem' }} autohide="true"
+                    delay="5000">
+                    <Toast.Header>
+                        <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
+                        <strong className="mr-auto">Donation</strong>
+                        <small>{this.state.donatedWhen}</small>
+                    </Toast.Header>
+                    <Toast.Body>Thanks for making a donation.</Toast.Body>
+                </Toast>;
+            }
+
             title = "Make a donation for TxFileSystem";
             contents = <main>
+                {toast}
                 <article>
                     <h1>Donate to support TxFileSystem Development</h1>
                     <p><acronym title="Transactional FileSystem">TxFileSystem</acronym> is a completely free .NET library, licensed
@@ -136,7 +147,7 @@ export class Donate extends Component {
                 </section>
                 <section className="donors">
                     <h2>Donors</h2>
-                    <div class="alert alert-danger">
+                    <div className="alert alert-danger">
                         <strong>FIXME</strong> The list of donors should still be designed and implemented.
                     </div>
                 </section>
