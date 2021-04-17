@@ -19,6 +19,7 @@ namespace TxFileSystem.Website.Controllers
     using Mollie.Api.Models.Payment.Request;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using TxFileSystem.Website.API.DTO;
     using TxFileSystem.Website.API.Results;
@@ -90,6 +91,23 @@ namespace TxFileSystem.Website.Controllers
             _logger.LogInformation("Created payment request using Mollie for {uuid}.", donation.Uuid);
 
             return new DonationPendingResult(paymentResponse.Id, paymentResponse.Links.Checkout.Href);
+        }
+
+        [HttpGet]
+        [Route("donors")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DonorsResult))]
+        public IActionResult GetDonorsAsync()
+        {
+            // TODO: add pagination.
+            var donors = _donationsRepository.GetDonors().Select(d => new API.DTO.Out.DonorDTO()
+            {
+                Name = d.Name,
+                Url = d.Url
+            });
+
+            _logger.LogInformation("Retrieved the donors");
+
+            return new DonorsResult(donors);
         }
 
         [HttpPost]

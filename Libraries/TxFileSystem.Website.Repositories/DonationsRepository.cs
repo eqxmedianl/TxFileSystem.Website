@@ -11,6 +11,7 @@ namespace TxFileSystem.Website.Repositories
     using Microsoft.EntityFrameworkCore;
     using Mollie.Api.Models.Payment.Response;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using TxFileSystem.Website.Database;
     using TxFileSystem.Website.Database.Model;
@@ -65,6 +66,26 @@ namespace TxFileSystem.Website.Repositories
             _websiteDbContext.SaveChanges();
         }
 
+        public void Add(Donor donor)
+        {
+            _websiteDbContext.Donors.Add(donor);
+            _websiteDbContext.SaveChanges();
+        }
+
+        public IEnumerable<Donor> GetDonors(int start = 0, int limit = 100)
+        {
+            return _websiteDbContext.Donors.Skip(start).Take(limit).AsEnumerable();
+        }
+
+        public bool TryGetDonor(string email, out Donor donor)
+        {
+            donor = null;
+
+            donor = _websiteDbContext.Donors.FirstOrDefault(d => d.Email == email);
+
+            return (donor != null);
+        }
+
         public void UpdateState(PaymentResponse paymentResponse)
         {
             var lookedUpDonationState = Enum.GetValues(typeof(DonationStateEnum))
@@ -86,21 +107,6 @@ namespace TxFileSystem.Website.Repositories
 
                 _websiteDbContext.SaveChanges();
             }
-        }
-
-        public void Add(Donor donor)
-        {
-            _websiteDbContext.Donors.Add(donor);
-            _websiteDbContext.SaveChanges();
-        }
-
-        public bool TryGetDonor(string email, out Donor donor)
-        {
-            donor = null;
-
-            donor = _websiteDbContext.Donors.FirstOrDefault(d => d.Email == email);
-
-            return (donor != null);
         }
     }
 }
