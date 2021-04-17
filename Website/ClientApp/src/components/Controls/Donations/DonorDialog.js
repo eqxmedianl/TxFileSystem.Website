@@ -7,10 +7,30 @@
  *
  */
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
+import { Button, Form, Modal } from 'react-bootstrap';
+import { Container, Row, Col} from 'react-bootstrap';
 
 export default class DonorDialog extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            name: null,
+            url: null
+        };
+
+        this.onOmit = this.onOmit.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onOmit() {
+        this.props.onOmit();
+    }
+
+    onSubmit() {
+        this.props.onSubmit(this.state.name, this.state.url);
+    }
 
     render() {
         return (
@@ -26,12 +46,37 @@ export default class DonorDialog extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     <h4>Donor details</h4>
-                    <div className="alert alert-danger">
-                        <strong>TODO</strong> The donors should be able to add details about themselves here.
-                    </div>
+                    <Form>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control placeholder="Enter a name"
+                                onChange={e => this.setState({ name: e.target.value })} />
+                            <Form.Text className="text-muted">
+                                When supplied this name will be listed on the donate page
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicCheckbox">
+                            <Form.Label>URL</Form.Label>
+                            <Form.Control type="url" placeholder="https://www.example.com/"
+                                onChange={e => this.setState({ url: e.target.value })} />
+                            <Form.Text className="text-muted">
+                                When supplied we will link to this website on the donate page
+                            </Form.Text>
+                        </Form.Group>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.props.onDonorSubmitted}>Submit</Button>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <Button className="float-left" onClick={this.onOmit}>Omit</Button>
+                            </Col>
+                            <Col>
+                                <Button className="float-right" onClick={this.onSubmit}>Submit</Button>
+                            </Col>
+                        </Row>
+                    </Container>
                 </Modal.Footer>
             </Modal>
         );
