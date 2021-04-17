@@ -12,8 +12,9 @@ import { HashLink as Link } from 'react-router-hash-link';
 import uuid from 'react-uuid'
 import Cookies from 'universal-cookie';
 
-import DonateButtonBar from '../Controls/DonateButtonBar';
-import DonorsListing from '../Controls/DonorsListing';
+import DonateButtonBar from '../Controls/Donations/DonateButtonBar';
+import DonorDialog from '../Controls/Donations/DonorDialog';
+import DonorsListing from '../Controls/Donations/DonorsListing';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Toast from 'react-bootstrap/Toast'
 
@@ -26,6 +27,7 @@ export class Donate extends Component {
         super(props)
 
         this.handleDonate = this.handleDonate.bind(this);
+        this.onDonorSubmitted = this.onDonorSubmitted.bind(this);
 
         const cookies = new Cookies();
         let transaction_id = cookies.get('transaction_id');
@@ -34,6 +36,7 @@ export class Donate extends Component {
         }
         
         this.state = {
+            donateShown: false,
             loading: true,
             transaction_id: transaction_id,
             paymentId: null,
@@ -83,7 +86,12 @@ export class Donate extends Component {
     }
 
     handleDonate(amount) {
-        this.doDonate(amount);
+        this.setState({ donateShown: true, amount: amount})
+    }
+
+    onDonorSubmitted() {
+        this.setState({ donateShown: false })
+        this.doDonate(this.state.amount);
     }
 
     render() {
@@ -108,6 +116,7 @@ export class Donate extends Component {
             title = "Make a donation for TxFileSystem";
             contents = <main>
                 {toast}
+                <DonorDialog donateShown={this.state.donateShown} onDonorSubmitted={this.onDonorSubmitted} />
                 <article>
                     <h1>Donate to support TxFileSystem Development</h1>
                     <p><acronym title="Transactional FileSystem">TxFileSystem</acronym> is a completely free .NET library, licensed
