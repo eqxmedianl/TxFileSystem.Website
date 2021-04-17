@@ -29,7 +29,7 @@ export class Donate extends Component {
 
         const cookies = new Cookies();
         let transaction_id = cookies.get('transaction_id');
-        if (typeof transaction_id == 'undefined') {
+        if (typeof transaction_id === 'undefined') {
             transaction_id = null;
         }
         
@@ -41,7 +41,7 @@ export class Donate extends Component {
             donatedWhen: 'just now'
         };
 
-        if (this.state.transaction_id != null) {
+        if (this.state.transaction_id !== null) {
             this.updateState();
             return;
         }
@@ -94,7 +94,7 @@ export class Donate extends Component {
         let title;
         let contents;
                 
-        if ((this.state.paymentId == null && this.state.paymentStatus == null) || this.state.paymentStatus == 'paid') {
+        if ((this.state.paymentId === null && this.state.paymentStatus === null) || this.state.paymentStatus === 'paid') {
 
             let toast = '';
             if (this.state.paymentStatus === 'paid') {
@@ -131,7 +131,7 @@ export class Donate extends Component {
             </main>;
 
         }
-        else if (this.state.paymentId != null && this.state.paymentStatus === 'open') {
+        else if (this.state.paymentId !== null && this.state.paymentStatus === 'open') {
 
             title = "Finish donating to TxFileSystem";
             contents = <div>
@@ -141,7 +141,7 @@ export class Donate extends Component {
             </div>;
 
         }
-        else if (this.state.paymentId != null && this.state.paymentStatus != null && this.state.paymentStatus != 'paid') {
+        else if (this.state.paymentId !== null && this.state.paymentStatus !== null && this.state.paymentStatus !== 'paid') {
 
             title = "Failed to donate to TxFileSystem";
             contents = <div>
