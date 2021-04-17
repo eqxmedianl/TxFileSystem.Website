@@ -14,11 +14,12 @@ export default class DonorsListing extends Component {
     render() {
 
         return (
+            // TODO: need to add fetch and render logic to list the sponsors that donated.
             <section className="donors">
                 <h2>Donors</h2>
                 <div className="alert alert-danger">
                     <strong>FIXME</strong> The list of donors should still be designed and implemented.
-                    </div>
+                </div>
             </section>
         );
 
