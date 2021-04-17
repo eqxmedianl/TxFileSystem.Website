@@ -49,8 +49,6 @@ export class Donate extends Component {
     }
 
     doDonate(amount) {
-        console.log("Starting to donate " + amount + " EUR");
-
         let data = {
             amount: amount,
             uuid: uuid()
@@ -76,7 +74,6 @@ export class Donate extends Component {
 
     finishPayment(e, paymentId) {
         e.preventDefault();
-        console.log("Finishing donation");
         const cookies = new Cookies();
         let checkout_url = cookies.get('checkout_url');
         if (typeof checkout_url != 'undefined') {
