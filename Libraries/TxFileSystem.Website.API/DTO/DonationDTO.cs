@@ -17,5 +17,8 @@ namespace TxFileSystem.Website.API.DTO
 
         [JsonProperty(PropertyName = "uuid")]
         public string Uuid { get; set; }
+
+        [JsonProperty(PropertyName = "donor")]
+        public DonorDTO Donor { get; set; }
     }
 }

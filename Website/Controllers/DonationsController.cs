@@ -22,10 +22,13 @@ namespace TxFileSystem.Website.Controllers
     using System.Threading.Tasks;
     using TxFileSystem.Website.API.DTO;
     using TxFileSystem.Website.Database;
+    using TxFileSystem.Website.Database.Model;
     using TxFileSystem.Website.Model;
     using TxFileSystem.Website.Repositories;
     using TxFileSystem.Website.Results;
     using TxFileSystem.Website.Settings.Mollie;
+
+    using Currency = Mollie.Api.Models.Currency;
 
     [ApiController]
     [Route("[controller]")]
@@ -58,7 +61,7 @@ namespace TxFileSystem.Website.Controllers
 
             var paymentRequest = new PaymentRequest()
             {
-                Amount = new Amount(Currency.EUR, new Decimal(donation.Amount)),
+                Amount = new Amount(Currency.EUR, new decimal(donation.Amount)),
                 Description = "Donation for EQXMedia.TxFileSystem",
                 RedirectUrl = refererUri.AbsoluteUri,
                 Methods = new List<string>() {
@@ -70,8 +73,20 @@ namespace TxFileSystem.Website.Controllers
             var paymentClient = new PaymentClient(_mollieOptions.Value.Api.Key);
             var paymentResponse = await paymentClient.CreatePaymentAsync(paymentRequest, includeQrCode: true);
 
+            Donor donor;
+            if (!_donationsRepository.TryGetDonor(donation.Donor.Email, out donor) && donation.Donor.IsValid)
+            {
+                _donationsRepository.Add(new Donor()
+                {
+                    Email = donation.Donor.Email,
+                    Name = donation.Donor.Name,
+                    Url = donation.Donor.Url
+                });
+                _donationsRepository.TryGetDonor(donation.Donor.Email, out donor);
+            }
+
             _donationsRepository.Add(paymentResponse.Id, donation.Uuid, donation.Amount,
-                paymentResponse.CreatedAt, paymentResponse.ExpiresAt);
+                paymentResponse.CreatedAt, paymentResponse.ExpiresAt, donor);
 
             _logger.LogInformation("Created payment request using Mollie for {uuid}.", donation.Uuid);
 

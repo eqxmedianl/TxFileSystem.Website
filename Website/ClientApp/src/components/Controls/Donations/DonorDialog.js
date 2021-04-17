@@ -29,7 +29,7 @@ export default class DonorDialog extends Component {
     }
 
     onSubmit() {
-        this.props.onSubmit(this.state.name, this.state.url);
+        this.props.onSubmit(this.state.email, this.state.name, this.state.url);
     }
 
     render() {
@@ -47,7 +47,7 @@ export default class DonorDialog extends Component {
                 <Modal.Body>
                     <h4>Donor details</h4>
                     <Form>
-                        <Form.Group controlId="formBasicEmail">
+                        <Form.Group controlId="name">
                             <Form.Label>Name</Form.Label>
                             <Form.Control placeholder="Enter a name"
                                 onChange={e => this.setState({ name: e.target.value })} />
@@ -56,7 +56,16 @@ export default class DonorDialog extends Component {
                             </Form.Text>
                         </Form.Group>
 
-                        <Form.Group controlId="formBasicCheckbox">
+                        <Form.Group controlId="email">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" placeholder="donor@example.com"
+                                onChange={e => this.setState({ email: e.target.value })} />
+                            <Form.Text className="text-muted">
+                                This is required to be able to uniquely identify you
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group controlId="url">
                             <Form.Label>URL</Form.Label>
                             <Form.Control type="url" placeholder="https://www.example.com/"
                                 onChange={e => this.setState({ url: e.target.value })} />

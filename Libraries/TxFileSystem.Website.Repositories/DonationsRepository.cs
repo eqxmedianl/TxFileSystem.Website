@@ -27,7 +27,7 @@ namespace TxFileSystem.Website.Repositories
             _websiteDbContext = websiteDbContext;
         }
 
-        public void Add(string paymentId, string uuid, double amount, DateTime? createdAt, DateTime? expiresAt)
+        public void Add(string paymentId, string uuid, double amount, DateTime? createdAt, DateTime? expiresAt, Donor donor)
         {
             var currency = _websiteDbContext.Currencies.First(c => c.CurrencyId == CurrencyEnum.EUR);
             var donationState = _websiteDbContext.DonationStates.First(s => s.DonationStateId == DonationStateEnum.Pending);
@@ -38,7 +38,8 @@ namespace TxFileSystem.Website.Repositories
                 Currency = currency,
                 State = donationState,
                 Uuid = uuid,
-                Payment = new MolliePayment(paymentId, createdAt, expiresAt)
+                Payment = new MolliePayment(paymentId, createdAt, expiresAt),
+                Donor = donor
             });
 
             _websiteDbContext.SaveChanges();
@@ -85,6 +86,21 @@ namespace TxFileSystem.Website.Repositories
 
                 _websiteDbContext.SaveChanges();
             }
+        }
+
+        public void Add(Donor donor)
+        {
+            _websiteDbContext.Donors.Add(donor);
+            _websiteDbContext.SaveChanges();
+        }
+
+        public bool TryGetDonor(string email, out Donor donor)
+        {
+            donor = null;
+
+            donor = _websiteDbContext.Donors.FirstOrDefault(d => d.Email == email);
+
+            return (donor != null);
         }
     }
 }

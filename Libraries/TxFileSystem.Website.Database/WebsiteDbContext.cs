@@ -24,6 +24,8 @@ namespace TxFileSystem.Website.Database
 
         public DbSet<Donation> Donations { get; set; }
 
+        public DbSet<Donor> Donors { get; set; }
+
         public DbSet<DonationState> DonationStates { get; set; }
 
         public DbSet<Currency> Currencies { get; set; }

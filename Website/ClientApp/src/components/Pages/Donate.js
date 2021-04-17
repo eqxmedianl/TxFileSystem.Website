@@ -43,7 +43,8 @@ export class Donate extends Component {
             paymentId: null,
             paymentStatus: null,
             donatedWhen: 'just now',
-            showToast: false
+            showToast: false,
+            donor: {}
         };
 
         if (this.state.transaction_id !== null) {
@@ -52,10 +53,11 @@ export class Donate extends Component {
         }
     }
 
-    doDonate(amount) {
+    doDonate(amount, donor = null) {
         let data = {
             amount: amount,
-            uuid: uuid()
+            uuid: uuid(),
+            donor: donor
         };
 
         fetch('donations/donate',
@@ -90,11 +92,11 @@ export class Donate extends Component {
         this.setState({ donateShown: true, amount: amount})
     }
 
-    handleDonorSubmitted(name, url) {
+    handleDonorSubmitted(email, name, url) {
         this.setState({ donateShown: false })
 
         // TODO: actually store the information about the donor using an API call and continue the donation afterwards.
-        this.doDonate(this.state.amount);
+        this.doDonate(this.state.amount, { email: email, name: name, url: url });
     }
 
     handleDonorOmitted() {

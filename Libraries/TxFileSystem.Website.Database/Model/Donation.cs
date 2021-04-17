@@ -43,5 +43,7 @@ namespace TxFileSystem.Website.Database.Model
 
         [Required]
         public DateTime LastUpdated { get; set; }
+
+        public Donor Donor { get; set; }
     }
 }
