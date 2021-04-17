@@ -6,7 +6,7 @@
  * Copyright (c) 2021, EQX Media B.V. - All rights reserved.
  *
  */
-namespace TxFileSystem.Website.Results
+namespace TxFileSystem.Website.API.Results
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;

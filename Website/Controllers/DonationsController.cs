@@ -21,11 +21,10 @@ namespace TxFileSystem.Website.Controllers
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using TxFileSystem.Website.API.DTO;
+    using TxFileSystem.Website.API.Results;
     using TxFileSystem.Website.Database;
     using TxFileSystem.Website.Database.Model;
-    using TxFileSystem.Website.Model;
     using TxFileSystem.Website.Repositories;
-    using TxFileSystem.Website.Results;
     using TxFileSystem.Website.Settings.Mollie;
 
     using Currency = Mollie.Api.Models.Currency;
