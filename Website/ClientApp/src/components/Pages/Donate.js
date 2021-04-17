@@ -8,6 +8,7 @@
  */
 import React, { Component } from 'react';
 import Helmet from "react-helmet";
+import { HashLink as Link } from 'react-router-hash-link';
 import uuid from 'react-uuid'
 import Cookies from 'universal-cookie';
 
@@ -115,11 +116,12 @@ export class Donate extends Component {
                     start using it to improve your application with. Using it one can maintain data integrity, even when
                         there is a need for classic file IO.</p>
                     <p>All design and development of this free .NET library takes place in time funded by us. We are EQX Media B.V.,
-                        a <i>Software Development House & Marketing Agency</i> from The Netherlands.</p>
-                    <p>To reduce our costs for the development of this OpenSource project and/or express your gratitude you can
-                        make a donation. Donations are very welcome! We thank you for your kindness upfront.</p>
-                    <p>When you choose to make a donation you get the chance the enter details about you or your company. That
-                        information you supply will be listed below.</p>
+                        a <i>Software Development House & Marketing Agency</i> from The Netherlands. To reduce our costs for the 
+                        development of this OpenSource project and/or express your gratitude you can make a donation.</p>
+                    <p>When you choose to make a donation you get the chance the enter details about you or your company. The
+                        information you supply when making a donation will be listed on the <Link to='#donors'
+                        scroll={el => el.scrollIntoView({ behavior: 'smooth' })}>list of donors</Link>.</p>
+                    <p>Donations are very welcome! We thank you for your kindness upfront.</p>
                 </article>
                 <DonateButtonBar onDonate={this.handleDonate} />
                 <DonorsListing />

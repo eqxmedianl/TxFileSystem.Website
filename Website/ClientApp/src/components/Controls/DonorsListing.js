@@ -15,7 +15,7 @@ export default class DonorsListing extends Component {
 
         return (
             // TODO: need to add fetch and render logic to list the sponsors that donated.
-            <section className="donors">
+            <section className="donors" id="donors">                
                 <h2>Donors</h2>
                 <div className="alert alert-danger">
                     <strong>FIXME</strong> The list of donors should still be designed and implemented.
