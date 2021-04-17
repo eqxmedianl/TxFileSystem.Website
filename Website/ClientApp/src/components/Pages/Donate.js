@@ -38,16 +38,14 @@ export class Donate extends Component {
             transaction_id: transaction_id,
             paymentId: null,
             paymentStatus: null,
-            donatedWhen: 'just now'
+            donatedWhen: 'just now',
+            showToast: false
         };
 
         if (this.state.transaction_id !== null) {
             this.updateState();
             return;
         }
-    }
-
-    componentDidMount() {
     }
 
     doDonate(amount) {
@@ -93,13 +91,13 @@ export class Donate extends Component {
     render() {
         let title;
         let contents;
-                
+
         if ((this.state.paymentId === null && this.state.paymentStatus === null) || this.state.paymentStatus === 'paid') {
 
             let toast = '';
             if (this.state.paymentStatus === 'paid') {
                 toast = <Toast style={{ position: 'absolute', top: '4rem', right: '2rem' }} autohide="true"
-                    delay="5000">
+                    delay="5000" onClose={() => this.showToast(false)} show={this.state.showToast}>
                     <Toast.Header>
                         <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                         <strong className="mr-auto">Donation</strong>
@@ -163,6 +161,10 @@ export class Donate extends Component {
                 {contents}
             </div>
         );
+    }
+
+    showToast(showToast) {
+        this.setState({ showToast: showToast });
     }
 
     updateState() {
