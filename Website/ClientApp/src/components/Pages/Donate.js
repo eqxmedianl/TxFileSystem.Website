@@ -18,7 +18,6 @@ import Toast from 'react-bootstrap/Toast'
 
 import './Donate.css';
 
-// FIXME: WIP needs heavy lifting.
 export class Donate extends Component {
     static displayName = Donate.name;
 
@@ -74,6 +73,7 @@ export class Donate extends Component {
 
     finishPayment(e, paymentId) {
         e.preventDefault();
+
         const cookies = new Cookies();
         let checkout_url = cookies.get('checkout_url');
         if (typeof checkout_url != 'undefined') {
