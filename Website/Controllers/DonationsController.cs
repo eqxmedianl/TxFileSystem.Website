@@ -38,6 +38,7 @@ namespace TxFileSystem.Website.Controllers
         private readonly ILogger<DonationsController> _logger;
         private readonly IActionContextAccessor _accessor;
         private readonly IOptions<Mollie> _mollieOptions;
+        private readonly WebsiteDbContext _websiteDbContext;
         private readonly DonationsRepository _donationsRepository;
 
         public DonationsController(ILogger<DonationsController> logger,
@@ -48,8 +49,9 @@ namespace TxFileSystem.Website.Controllers
             _logger = logger;
             _mollieOptions = mollieOptions;
             _accessor = accessor;
+            _websiteDbContext = websiteDbContext;
 
-            _donationsRepository = new DonationsRepository(websiteDbContext);
+            _donationsRepository = new DonationsRepository(_websiteDbContext);
         }
 
         [HttpPost]
@@ -95,12 +97,11 @@ namespace TxFileSystem.Website.Controllers
         }
 
         [HttpGet]
-        [Route("donors")]
+        [Route("donors/{year}/{month}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DonorsResult))]
-        public IActionResult GetDonorsAsync()
+        public IActionResult GetDonors(int year, int month)
         {
-            // TODO: add pagination.
-            var donors = _donationsRepository.GetDonors()
+            var donors = _donationsRepository.GetDonors(month, year)
                 .Select(d => new API.DTO.Out.DonorDTO()
             {
                 Name = d.Name,
@@ -125,6 +126,27 @@ namespace TxFileSystem.Website.Controllers
             _logger.LogInformation("Update payment status obtained from Mollie for {paymentId}.", payment.TransactionId);
 
             return new DonationPaymentStatusResult(payment.TransactionId, paymentResponse.Status);
+        }
+
+        [HttpGet]
+        [Route("timeperiods")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TimePeriodsResult))]
+        public IActionResult GetTimePeriods()
+        {
+            var timePeriods = _websiteDbContext.Donations
+                .Where(d => d.Payment.PaidAt.HasValue)
+                .OrderByDescending(d => d.Payment.PaidAt.Value)
+                .Select(d => d.Payment.PaidAt.Value)
+                .GroupBy(d => new { Year = d.Year, Month = d.Month })
+                .Select(g => new API.DTO.Out.TimePeriodDTO()
+                {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month
+                }).ToList();
+
+            _logger.LogInformation("Retrieved the donors");
+
+            return new TimePeriodsResult(timePeriods);
         }
     }
 }

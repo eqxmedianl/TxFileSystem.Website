@@ -72,12 +72,14 @@ namespace TxFileSystem.Website.Repositories
             _websiteDbContext.SaveChanges();
         }
 
-        public IEnumerable<Donor> GetDonors(int start = 0, int limit = 100)
+        public IEnumerable<Donor> GetDonors(int month, int year)
         {
-            return _websiteDbContext.Donors
+            return _websiteDbContext.Donations
+                .Where(d => d.Payment.PaidAt.HasValue && 
+                    d.Payment.PaidAt.Value.Year == year && d.Payment.PaidAt.Value.Month == month
+                    && d.Donor != null)
+                .Select(d => d.Donor)
                 .OrderByDescending(d => d.Id)
-                .Skip(start)
-                .Take(limit)
                 .AsEnumerable();
         }
 
@@ -104,10 +106,10 @@ namespace TxFileSystem.Website.Repositories
             {
                 donation.State = donationState;
                 donation.LastUpdated = DateTime.UtcNow;
-                donation.Payment.CanceledAt = paymentResponse.CanceledAt;
-                donation.Payment.ExpiredAt = paymentResponse.ExpiredAt;
-                donation.Payment.FailedAt = paymentResponse.FailedAt;
-                donation.Payment.PaidAt = paymentResponse.PaidAt;
+                donation.Payment.CanceledAt = (paymentResponse.CanceledAt.HasValue) ? paymentResponse.CanceledAt.Value : null;
+                donation.Payment.ExpiredAt = (paymentResponse.ExpiredAt.HasValue) ? paymentResponse.ExpiredAt.Value : null;
+                donation.Payment.FailedAt = (paymentResponse.FailedAt.HasValue) ? paymentResponse.FailedAt.Value : null;
+                donation.Payment.PaidAt = (paymentResponse.PaidAt.HasValue) ? paymentResponse.PaidAt.Value : null;
 
                 _websiteDbContext.SaveChanges();
             }

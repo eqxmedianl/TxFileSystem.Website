@@ -8,21 +8,21 @@
  */
 import React, { Component } from 'react';
 
+import DonorsListingPerMonth from './DonorsListingPerMonth';
+
 export default class DonorsListing extends Component {
     static displayName = DonorsListing.name;
 
     constructor(props) {
         super(props)
 
-        this.state = { loading: true, donors: [] }
+        this.state = { loading: true, timePeriods: [] }
 
-        this.seperateDonors = this.seperateDonors.bind(this);
-
-        this.fetchDonors();
+        this.fetchTimePeriods();
     }
 
-    fetchDonors() {
-        fetch('donations/donors',
+    fetchTimePeriods() {
+        fetch('donations/timeperiods',
             {
                 method: "GET",
                 headers: { 'Content-Type': 'application/json' }
@@ -31,27 +31,28 @@ export default class DonorsListing extends Component {
             .then(data => {
                 let result = JSON.parse(data);
 
-                this.setState({ loading: false, donors: result.donors });
+                this.setState({ loading: false, timePeriods: result.timePeriods });
             });
     }
 
-    listDonor(donor) {
-        if (donor.url === null) {
-            return (donor.name)
+    renderListing() {
+        let intro = '';
+        let onlyMonth = false;
+        if (this.state.timePeriods.length === 1) {
+            intro = <p>The following donors were kind enough to make a donation this month:</p>;
+            onlyMonth = true;
         }
-        return (<a href={donor.url}>{donor.name}</a>)
-    }
-
-    renderDonorsListing() {
+        if (this.state.timePeriods.length > 1) {
+            intro = <p>The following donors were kind enough to make a donation in the months mentioned.</p>;
+        }
         return (
             <div>
-                <p>The following donors were kind enough to make a donation:</p>
-                <div>{
-                this.state.donors.map((donor, i) => <span key={i}>
-                    {i > 0 && this.seperateDonors(i, this.state.donors.length)}
-                    {this.listDonor(donor)}
-                </span>)
-                }</div>
+                {intro}
+                {
+                    this.state.timePeriods.map(period =>
+                        <DonorsListingPerMonth month={period.month} year={period.year} onlyMonth={onlyMonth} />
+                    )
+                }
             </div>
         )
     }
@@ -59,25 +60,16 @@ export default class DonorsListing extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : this.state.donors.length > 0
-                ? this.renderDonorsListing()
+            : this.state.timePeriods.length > 0
+                ? this.renderListing()
                 : <p><em>You can be the first donor.</em></p>;
 
         return (
-            <section className="donors" id="donors">                
+            <section className="donors" id="donors">
                 <h2>Donors</h2>
                 {contents}
             </section>
         );
 
-    }
-
-    seperateDonors(i, total) {
-        if (i + 1 < total) {
-            return (", ")
-        }
-        else if (i + 1 === total) {
-            return (" and ")
-        }
     }
 }
