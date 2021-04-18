@@ -49,8 +49,8 @@ export default class DonorsListing extends Component {
             <div>
                 {intro}
                 {
-                    this.state.timePeriods.map(period =>
-                        <DonorsListingPerMonth month={period.month} year={period.year} onlyMonth={onlyMonth} />
+                    this.state.timePeriods.map((period, i) =>
+                        <DonorsListingPerMonth key={i} month={period.month} year={period.year} onlyMonth={onlyMonth} />
                     )
                 }
             </div>
