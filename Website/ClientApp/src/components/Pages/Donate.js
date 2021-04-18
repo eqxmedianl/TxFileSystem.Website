@@ -97,7 +97,6 @@ export class Donate extends Component {
     handleDonorSubmitted(email, name, url) {
         this.setState({ donateShown: false })
 
-        // TODO: actually store the information about the donor using an API call and continue the donation afterwards.
         this.doDonate(this.state.amount, { email: email, name: name, url: url });
     }
 
