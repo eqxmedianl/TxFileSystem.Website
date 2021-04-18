@@ -21,7 +21,7 @@ export default class DonorsPerMonth extends Component {
         this.state = {
             loading: true,
             donors: [],
-            monthName: monthNames[this.props.month],
+            monthName: monthNames[this.props.month - 1],
             sectionClass: 'donors-per-month donors-per-month-' + monthNames[this.props.month].toLowerCase() + this.props.year,
             sectionId: 'donors-per-month-' + monthNames[this.props.month].toLowerCase() + this.props.year
         }
@@ -54,12 +54,12 @@ export default class DonorsPerMonth extends Component {
 
     renderListing() {
         return (
-            <div>{
+            <p>{
                 this.state.donors.map((donor, i) => <span key={i}>
                     {i > 0 && this.seperateDonors(i, this.state.donors.length)}
                     {this.listDonor(donor)}
                 </span>)
-            }</div>
+            }</p>
         )
     }
 

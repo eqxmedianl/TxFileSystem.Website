@@ -134,10 +134,10 @@ namespace TxFileSystem.Website.Controllers
         public IActionResult GetTimePeriods()
         {
             var timePeriods = _websiteDbContext.Donations
-                .Where(d => d.Payment.PaidAt.HasValue)
-                .OrderByDescending(d => d.Payment.PaidAt.Value)
+                .Where(d => d.Donor != null && d.Payment.PaidAt.HasValue)
                 .Select(d => d.Payment.PaidAt.Value)
-                .GroupBy(d => new { Year = d.Year, Month = d.Month })
+                .GroupBy(d => new { Month = d.Month, Year = d.Year })
+                .OrderByDescending(d => d.Key.Month)
                 .Select(g => new API.DTO.Out.TimePeriodDTO()
                 {
                     Year = g.Key.Year,
