@@ -21,8 +21,13 @@ export default class DonorDialog extends Component {
             url: null
         };
 
+        this.onHide = this.onHide.bind(this);
         this.onOmit = this.onOmit.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onHide() {
+        this.props.onHide();
     }
 
     onOmit() {
@@ -47,6 +52,7 @@ export default class DonorDialog extends Component {
         return (
             <Modal
                 show={this.props.donateShown}
+                onHide={this.onHide}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>

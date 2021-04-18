@@ -29,6 +29,7 @@ export class Donate extends Component {
         this.handleDonate = this.handleDonate.bind(this);
         this.handleDonorOmitted = this.handleDonorOmitted.bind(this);
         this.handleDonorSubmitted = this.handleDonorSubmitted.bind(this);
+        this.handleHide = this.handleHide.bind(this);
 
         const cookies = new Cookies();
         let transaction_id = cookies.get('transaction_id');
@@ -104,6 +105,10 @@ export class Donate extends Component {
         this.doDonate(this.state.amount);
     }
 
+    handleDonorDialogHide() {
+        this.setState({ donateShown: false })
+    }
+
     render() {
         let title;
         let contents;
@@ -126,8 +131,8 @@ export class Donate extends Component {
             title = "Make a donation for TxFileSystem";
             contents = <main>
                 {toast}
-                <DonorDialog donateShown={this.state.donateShown} onSubmit={this.handleDonorSubmitted}
-                    onOmit={this.handleDonorOmitted} />
+                <DonorDialog donateShown={this.state.donateShown} onHide={this.handleDonorDialogHide}
+                    onSubmit={this.handleDonorSubmitted} onOmit={this.handleDonorOmitted} />
                 <article>
                     <h1>Donate to support TxFileSystem Development</h1>
                     <p><acronym title="Transactional FileSystem">TxFileSystem</acronym> is a completely free .NET library, licensed
