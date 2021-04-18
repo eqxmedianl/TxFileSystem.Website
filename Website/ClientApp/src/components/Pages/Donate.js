@@ -214,7 +214,10 @@ export class Donate extends Component {
 
                 this.setState({
                     paymentId: paymentStatusResult.paymentId,
-                    paymentStatus: paymentStatusResult.status
+                    paymentStatus: paymentStatusResult.status,
+                    showToast: (paymentStatusResult.paymentId !== null && paymentStatusResult.status !== null
+                        && paymentStatusResult.status === 'paid')
+
                 });
             });
     }
