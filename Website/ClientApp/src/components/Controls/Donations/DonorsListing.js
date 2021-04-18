@@ -42,15 +42,6 @@ export default class DonorsListing extends Component {
         return (<a href={donor.url}>{donor.name}</a>)
     }
 
-    seperateDonors(i, total) {
-        if (i + 1 < total) {
-            return (", ")
-        }
-        else if (i + 1 === total) {
-            return (" and ")
-        }
-    }
-
     renderDonorsListing() {
         return (
             <div>
@@ -79,5 +70,14 @@ export default class DonorsListing extends Component {
             </section>
         );
 
+    }
+
+    seperateDonors(i, total) {
+        if (i + 1 < total) {
+            return (", ")
+        }
+        else if (i + 1 === total) {
+            return (" and ")
+        }
     }
 }
