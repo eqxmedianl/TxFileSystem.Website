@@ -39,7 +39,12 @@ export default class DonorsListing extends Component {
         let intro = '';
         let onlyMonth = false;
         if (this.state.timePeriods.length === 1) {
-            intro = <p>The following donors were kind enough to make a donation this month:</p>;
+            if (this.state.timePeriods[0].month === new Date().getMonth() + 1) {
+                intro = <p>The following donors were kind enough to make a donation this month:</p>;
+            }
+            else {
+                intro = <p>The following donors were kind enough to make a donation:</p>;
+            }
             onlyMonth = true;
         }
         if (this.state.timePeriods.length > 1) {
