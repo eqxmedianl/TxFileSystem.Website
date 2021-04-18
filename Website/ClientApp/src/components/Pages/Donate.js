@@ -54,11 +54,12 @@ export class Donate extends Component {
         }
     }
 
-    doDonate(amount, donor = null) {
+    doDonate(amount, options) {
         let data = {
             amount: amount,
             uuid: uuid(),
-            donor: donor
+            donor: options.donor ? options.donor : null,
+            isAnonymous: options.anonymous && !options.donor ? options.anonymous : false
         };
 
         fetch('donations/donate',
@@ -102,7 +103,9 @@ export class Donate extends Component {
 
     handleDonorOmitted() {
         this.setState({ donateShown: false })
-        this.doDonate(this.state.amount);
+        this.doDonate(this.state.amount, {
+            anonymous: true
+        });
     }
 
     handleDonorDialogHide() {

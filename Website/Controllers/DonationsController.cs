@@ -73,8 +73,9 @@ namespace TxFileSystem.Website.Controllers
             var paymentClient = new PaymentClient(_mollieOptions.Value.Api.Key);
             var paymentResponse = await paymentClient.CreatePaymentAsync(paymentRequest, includeQrCode: true);
 
-            Donor donor;
-            if (!_donationsRepository.TryGetDonor(donation.Donor.Email, out donor) && donation.Donor.IsValid)
+            Donor donor = null;
+            if (!donation.IsAnonymous && donation.Donor.IsValid
+                && !_donationsRepository.TryGetDonor(donation.Donor.Email, out donor))
             {
                 _donationsRepository.Add(new Donor()
                 {

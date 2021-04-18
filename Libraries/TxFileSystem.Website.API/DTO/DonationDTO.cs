@@ -12,16 +12,14 @@ namespace TxFileSystem.Website.API.DTO
 
     public sealed class DonationDTO
     {
-        public DonationDTO()
-        {
-            this.Donor = new DonorDTO();
-        }
-
         [JsonProperty(PropertyName = "amount")]
         public double Amount { get; set; }
 
         [JsonProperty(PropertyName = "uuid")]
         public string Uuid { get; set; }
+
+        [JsonProperty(PropertyName = "isAnonymous")]
+        public bool IsAnonymous { get; set; }
 
         [JsonProperty(PropertyName = "donor")]
         public DonorDTO Donor { get; set; }
