@@ -74,7 +74,11 @@ namespace TxFileSystem.Website.Repositories
 
         public IEnumerable<Donor> GetDonors(int start = 0, int limit = 100)
         {
-            return _websiteDbContext.Donors.Skip(start).Take(limit).AsEnumerable();
+            return _websiteDbContext.Donors
+                .OrderByDescending(d => d.Id)
+                .Skip(start)
+                .Take(limit)
+                .AsEnumerable();
         }
 
         public bool TryGetDonor(string email, out Donor donor)

@@ -99,7 +99,8 @@ namespace TxFileSystem.Website.Controllers
         public IActionResult GetDonorsAsync()
         {
             // TODO: add pagination.
-            var donors = _donationsRepository.GetDonors().Select(d => new API.DTO.Out.DonorDTO()
+            var donors = _donationsRepository.GetDonors()
+                .Select(d => new API.DTO.Out.DonorDTO()
             {
                 Name = d.Name,
                 Url = d.Url
