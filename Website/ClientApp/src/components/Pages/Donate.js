@@ -97,7 +97,7 @@ export class Donate extends Component {
     handleDonorSubmitted(email, name, url) {
         this.setState({ donateShown: false })
 
-        this.doDonate(this.state.amount, { email: email, name: name, url: url });
+        this.doDonate(this.state.amount, { donor: { email: email, name: name, url: url } });
     }
 
     handleDonorOmitted() {
