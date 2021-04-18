@@ -29,7 +29,7 @@ export class Donate extends Component {
         this.handleDonate = this.handleDonate.bind(this);
         this.handleDonorOmitted = this.handleDonorOmitted.bind(this);
         this.handleDonorSubmitted = this.handleDonorSubmitted.bind(this);
-        this.handleHide = this.handleHide.bind(this);
+        this.handleDonorDialogHide = this.handleDonorDialogHide.bind(this);
 
         const cookies = new Cookies();
         let transaction_id = cookies.get('transaction_id');
