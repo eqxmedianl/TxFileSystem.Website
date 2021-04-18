@@ -8,8 +8,8 @@
  */
 import React, { Component } from 'react';
 
-export default class DonorsListingPerMonth extends Component {
-    static displayName = DonorsListingPerMonth.name;
+export default class DonorsPerMonth extends Component {
+    static displayName = DonorsPerMonth.name;
 
     constructor(props) {
         super(props)

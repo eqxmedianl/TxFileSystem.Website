@@ -8,7 +8,7 @@
  */
 import React, { Component } from 'react';
 
-import DonorsListingPerMonth from './DonorsListingPerMonth';
+import DonorsPerMonth from './DonorsPerMonth';
 
 export default class DonorsListing extends Component {
     static displayName = DonorsListing.name;
@@ -50,7 +50,7 @@ export default class DonorsListing extends Component {
                 {intro}
                 {
                     this.state.timePeriods.map((period, i) =>
-                        <DonorsListingPerMonth key={i} month={period.month} year={period.year} onlyMonth={onlyMonth} />
+                        <DonorsPerMonth key={i} month={period.month} year={period.year} onlyMonth={onlyMonth} />
                     )
                 }
             </div>
