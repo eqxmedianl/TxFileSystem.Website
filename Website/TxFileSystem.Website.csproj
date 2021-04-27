@@ -11,7 +11,7 @@
     <AssemblyName>TxFileSystem.Website</AssemblyName>
     <Company>EQX Media B.V.</Company>
     <Authors>Jarno Kamminga</Authors>
-    <Version>0.4.1</Version>
+    <Version>0.5.0</Version>
     <Copyright>(c) 2021 EQX Media B.V.</Copyright>
     <PackageProjectUrl>https://txfilesystem.io</PackageProjectUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
@@ -73,8 +73,8 @@
    * Added Install page.
 * Displaying EQXMedia.TxFileSystem package info, using:
    * Web API being a middleware API for several NuGet API calls.</PackageReleaseNotes>
-    <AssemblyVersion>0.4.1.0</AssemblyVersion>
-    <FileVersion>0.4.1.0</FileVersion>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
