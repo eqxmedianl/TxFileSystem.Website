@@ -8,34 +8,33 @@
  */
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';  
-import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
 import { Footer } from './Footer';
 
-export class Layout extends Component {
-  static displayName = Layout.name;
+export class DocumentationLayout extends Component {
+  static displayName = DocumentationLayout.name;
 
   render () {
     return (
       <div className="d-flex flex-column vh-100">
         <NavMenu />
-        <Container className="flex-grow-1">
+        <div className="flex-grow-1">
           {this.props.children}
-        </Container>
+        </div>
         <Footer/>
       </div>
     );
   }
 }
 
-const StandardRoute = ({ component: Component, ...rest }) => {
+const DocumentationRoute = ({ component: Component, ...rest }) => {
     return (
         <Route {...rest} render={matchProps => (
-            <Layout>
+            <DocumentationLayout>
                 <Component {...matchProps} />
-            </Layout>
+            </DocumentationLayout>
         )} />
     )
 };
 
-export default StandardRoute;
+export default DocumentationRoute;

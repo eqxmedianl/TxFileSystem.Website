@@ -8,12 +8,14 @@
  */
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
-import { Route } from 'react-router';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';  
 
-import { Layout } from './components/Layout/Layout';
+import StandardRoute from './components/Layout/Layout';
+import DocumentationRoute from './components/Layout/DocumentationLayout';
 
 import { Home } from './components/Pages/Home';
 import { About } from './components/Pages/About';
+import { Documentation } from './components/Pages/Documentation';
 import { Donate } from './components/Pages/Donate';
 import { License } from './components/Pages/License';
 import { Install } from './components/Pages/Install';
@@ -31,25 +33,26 @@ const tagManagerArgs = {
 TagManager.initialize(tagManagerArgs)
 
 export default class App extends Component {
-static displayName = App.name;
+    static displayName = App.name;
 
-render () {
-    return (
-        <Layout>
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>TxFileSystem</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <link rel="canonical" href="http://txfilesystem.io" />
-                <link rel="canonical" href="https://www.txfilesystem.io" />
-                <link rel="canonical" href="http://www.txfilesystem.io" />
-            </Helmet>
-            <Route exact path='/' component={Home} />
-            <Route path='/install' component={Install} />
-            <Route path='/donate' component={Donate} />
-            <Route path='/license' component={License} />
-            <Route path='/about' component={About} />
-        </Layout>
-    );
-}
+    render () {
+        return (
+            <Router>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>TxFileSystem</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <link rel="canonical" href="http://txfilesystem.io" />
+                    <link rel="canonical" href="https://www.txfilesystem.io" />
+                    <link rel="canonical" href="http://www.txfilesystem.io" />
+                </Helmet>
+                <StandardRoute exact path='/' component={Home} />
+                <StandardRoute path='/install' component={Install} />
+                <DocumentationRoute path='/docs' component={Documentation} />
+                <StandardRoute path='/donate' component={Donate} />
+                <StandardRoute path='/license' component={License} />
+                <StandardRoute path='/about' component={About} />
+            </Router>
+        );
+    }
 }
