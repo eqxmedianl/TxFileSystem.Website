@@ -13,11 +13,12 @@ namespace TxFileSystem.Website.Controllers
     using Microsoft.AspNetCore.StaticFiles;
     using Microsoft.Extensions.Logging;
     using System;
+    using System.IO;
     using TxFileSystem.Website.API.Results;
 
     [ApiController]
-    [Route("docs/html")]
-    [Produces("text/html")]
+    [Route("docs/view")]
+    [Produces("text/html", "text/css", "application/javascript", "text/javascript", "image/gif", "image/jpg", "image/png")]
     public class DocumentationController : ControllerBase
     {
         private readonly ILogger<DocumentationController> _logger;
@@ -52,9 +53,7 @@ namespace TxFileSystem.Website.Controllers
                 contentType = "application/octet-stream";
             }
 
-            var content = System.IO.File.ReadAllText(path);
-
-            return new DocumentationResult(content, contentType);
+            return new DocumentationResult(new FileStream(path, FileMode.Open), contentType);
         }
     }
 }

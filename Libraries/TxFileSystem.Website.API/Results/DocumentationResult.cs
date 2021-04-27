@@ -1,29 +1,25 @@
 ﻿namespace TxFileSystem.Website.API.Results
 {
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using System.IO;
     using System.Threading.Tasks;
 
     public sealed class DocumentationResult : IActionResult
     {
-        public DocumentationResult(string content, string contentType)
+        public DocumentationResult(FileStream fileStream, string contentType)
         {
-            this.Content = content;
+            this.FileStream = fileStream;
             this.ContentType = contentType;
         }
         
-        public string Content { get; private set; }
+        public FileStream FileStream { get; private set; }
 
         public string ContentType { get; private set; }
 
         public Task ExecuteResultAsync(ActionContext context)
         {
-            var result = new ContentResult
-            {
-                ContentType = this.ContentType,
-                Content = this.Content,
-                StatusCode = StatusCodes.Status200OK,
-            };
+            var result = new FileStreamResult(this.FileStream, this.ContentType);
+
             return result.ExecuteResultAsync(context);
         }
     }

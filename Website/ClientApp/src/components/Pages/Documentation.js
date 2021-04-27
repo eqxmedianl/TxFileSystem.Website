@@ -30,7 +30,7 @@ export class Documentation extends Component {
                     <title>TxFileSystem Documentation</title>
                     <meta name="description" content="Documentation of the OpenSource .NET library TxFileSystem" />
                 </Helmet>
-                <iframe class="h-100 w-100" src="docs/html/index" />
+                <iframe class="h-100 w-100" src="docs/view/index" />
             </div>
         );
     }
