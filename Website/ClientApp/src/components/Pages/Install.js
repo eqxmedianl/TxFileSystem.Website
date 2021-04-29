@@ -24,7 +24,7 @@ export class Install extends Component {
     handleClick(e, version) {
         e.preventDefault();
         console.log('this is:', version);
-        this.state.latest_version = version;
+        this.setState({ latest_version: version });
     }
 
     handleVersionChange(version) {
@@ -46,7 +46,7 @@ export class Install extends Component {
                 </Helmet>
                 <section class="latest-version row mb-4">
                     <aside class="col-md-2 col-sm-12">
-                        <img src={latest.iconUrl} class="float-left mr-2 w-100" />
+                        <img src={latest.iconUrl} class="float-left mr-2 w-100" alt="Package Icon" />
                     </aside>
                     <div class="col-md-10 col-sm-12 mt-4 mt-md-0">
                         <header class="clearfix">

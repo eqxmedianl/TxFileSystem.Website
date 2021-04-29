@@ -1,14 +1,14 @@
 ﻿/**
- * 
- * Redistribution and use in source and binary forms, with or without modification, are permitted 
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
  * provided that the conditions mentioned in the shipped license are met.
- * 
+ *
  * Copyright (c) 2021, EQX Media B.V. - All rights reserved.
- * 
+ *
  */
-namespace TxFileSystem.Website
+namespace TxFileSystem.Website.NuGet
 {
-    using NuGet.Common;
+    using global::NuGet.Common;
     using System.Threading.Tasks;
 
     public class Logger : ILogger
@@ -24,17 +24,6 @@ namespace TxFileSystem.Website
         }
 
         public Task LogAsync(LogLevel level, string data)
-        {
-            //throw new NotImplementedException();
-            return Task.CompletedTask;
-        }
-
-        public void Log(ILogMessage message)
-        {
-            //throw new NotImplementedException();
-        }
-
-        public Task LogAsync(ILogMessage message)
         {
             //throw new NotImplementedException();
             return Task.CompletedTask;
@@ -66,6 +55,11 @@ namespace TxFileSystem.Website
         }
 
         public void LogError(string data)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void LogErrorSummary(string data)
         {
             //throw new NotImplementedException();
         }

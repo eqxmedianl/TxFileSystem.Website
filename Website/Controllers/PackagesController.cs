@@ -12,7 +12,7 @@ namespace TxFileSystem.Website.Controllers
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using TxFileSystem.Website.Model;
+    using TxFileSystem.Website.API.DTO;
     using TxFileSystem.Website.Repositories;
 
     [ApiController]
@@ -30,7 +30,7 @@ namespace TxFileSystem.Website.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Package>> GetAsync()
+        public async Task<IEnumerable<PackageDTO>> GetAsync()
         {
             return await _packageRepository.GetPackages(PackageId);
         }

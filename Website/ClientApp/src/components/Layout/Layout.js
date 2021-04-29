@@ -7,6 +7,7 @@
  *
  */
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';  
 import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
 import { Footer } from './Footer';
@@ -16,7 +17,7 @@ export class Layout extends Component {
 
   render () {
     return (
-      <div class="d-flex flex-column vh-100">
+      <div className="d-flex flex-column vh-100">
         <NavMenu />
         <Container className="flex-grow-1">
           {this.props.children}
@@ -26,3 +27,15 @@ export class Layout extends Component {
     );
   }
 }
+
+const StandardRoute = ({ component: Component, ...rest }) => {
+    return (
+        <Route {...rest} render={matchProps => (
+            <Layout>
+                <Component {...matchProps} />
+            </Layout>
+        )} />
+    )
+};
+
+export default StandardRoute;

@@ -6,16 +6,14 @@
  * Copyright (c) 2021, EQX Media B.V. - All rights reserved.
  * 
  */
-namespace TxFileSystem.Website.Model
+namespace TxFileSystem.Website.Service
 {
-    using Newtonsoft.Json;
-
-    public sealed class SearchResultVersion
+    static class Purger
     {
-        [JsonProperty("version")]
-        public string Version { get; set; }
-
-        [JsonProperty("downloads")]
-        public long Downloads { get; set; }
+        static void Main(string[] args)
+        {
+            var purgeService = new PurgeService();
+            purgeService.Run();
+        }
     }
 }

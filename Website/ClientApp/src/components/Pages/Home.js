@@ -13,10 +13,6 @@ import { FetchedMarkDown } from "../Controls/FetchedMarkDown";
 export class Home extends Component {
     static displayName = Home.name;
 
-    constructor(props) {
-        super(props)
-    }
-
     render () {
         return (
             <div>

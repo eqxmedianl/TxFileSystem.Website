@@ -13,10 +13,6 @@ import { FetchedMarkDown } from "../Controls/FetchedMarkDown";
 export class License extends Component {
     static displayName = License.name;
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return (
             <div class="h-100 sx-auto">
@@ -31,4 +27,5 @@ export class License extends Component {
             </div>
         );
     }
+
 }

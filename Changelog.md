@@ -1,5 +1,10 @@
 # Release Notes
 
+## Version 0.5.0
+
+### Changes
+* `[WIP]` Added support for making donations using Mollie.
+
 ## Version 0.4.1
 
 ### Changes

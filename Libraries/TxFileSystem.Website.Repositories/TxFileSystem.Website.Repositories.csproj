@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mollie.Api" Version="2.1.0.5" />
+    <PackageReference Include="NuGet.Client" Version="4.2.0" />
+    <PackageReference Include="NuGet.Logging" Version="3.4.3" />
+    <PackageReference Include="NuGet.Protocol" Version="5.9.0" />
+    <PackageReference Include="NuGet.Repositories" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TxFileSystem.Website.API\TxFileSystem.Website.API.csproj" />
+    <ProjectReference Include="..\TxFileSystem.Website.Database\TxFileSystem.Website.Database.csproj" />
+    <ProjectReference Include="..\TxFileSystem.Website.NuGet\TxFileSystem.Website.NuGet.csproj" />
+  </ItemGroup>
+  
+</Project>
