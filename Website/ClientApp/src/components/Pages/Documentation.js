@@ -13,6 +13,8 @@ import $ from 'jquery'
 
 import "./Documentation.css";
 
+const defaultTitle = "TxFileSystem Documentation";
+
 export class Documentation extends Component {
     static displayName = Documentation.name;
 
@@ -22,6 +24,7 @@ export class Documentation extends Component {
         this.state = {
             loading: true,
             content: null,
+            topicTitle: defaultTitle,
             topicUrl: null
         }
     }
@@ -53,14 +56,31 @@ export class Documentation extends Component {
             topicUrl = "docs/view/html/" + topicParts;
         }
 
-        this.setState({ topicUrl: topicUrl });
+        this.fetchTopicInfo(topicParts, topicUrl)
+    }
+
+    fetchTopicInfo(topicParts, topicUrl) {
+        fetch('docs/info/' + topicParts,
+            {
+                method: "GET"
+            })
+            .then(response => response.text())
+            .then(data => {
+                let documentationInfoResult = JSON.parse(data);
+                let topicTitle = documentationInfoResult.title;
+
+                this.setState({
+                    topicTitle: topicTitle + " | " + defaultTitle,
+                    topicUrl: topicUrl
+                });
+            });
     }
 
     render() {
         return (
             <div class="h-100 w-100">
                 <Helmet>
-                    <title>TxFileSystem Documentation</title>
+                    <title>{this.state.topicTitle}</title>
                     <meta name="description" content="Documentation of the OpenSource .NET library TxFileSystem" />
                 </Helmet>
                 <iframe ref="topicFrame" class="h-100 w-100" src={this.state.topicUrl} />

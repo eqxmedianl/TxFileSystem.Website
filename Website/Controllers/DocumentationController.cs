@@ -18,7 +18,6 @@ namespace TxFileSystem.Website.Controllers
     using TxFileSystem.Website.API.Results;
 
     [ApiController]
-    [Route("docs/view")]
     [Produces("text/html", "text/css", "application/javascript", "text/javascript", "image/gif", "image/jpg", "image/png", "application/xml")]
     public class DocumentationController : ControllerBase
     {
@@ -33,7 +32,36 @@ namespace TxFileSystem.Website.Controllers
         }
 
         [HttpGet]
-        [Route("{**topicParts}")]
+        [Route("docs/info/{**topicParts}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DocumentationInfoResult))]
+        public IActionResult GetTopicInfo(string topicParts)
+        {
+            var projectRootPath = AppDomain.CurrentDomain.BaseDirectory;
+
+            string path;
+            if (topicParts == "index")
+            {
+                path = projectRootPath + "/docs/index.html";
+            }
+            else
+            {
+                path = Path.Combine(projectRootPath, "docs", topicParts);
+                if (!System.IO.File.Exists(path))
+                {
+                    path = Path.Combine(projectRootPath, "docs"
+                        + Path.DirectorySeparatorChar + "html", topicParts);
+                }
+            }
+
+            var csQuery = (CsQuery.CQ)System.IO.File.ReadAllText(path);
+            var title = csQuery.Find("title").First();
+            var titleValue = title.Contents()[0].NodeValue;
+
+            return new DocumentationInfoResult(titleValue);
+        }
+
+        [HttpGet]
+        [Route("docs/view/{**topicParts}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DocumentationResult))]
         [ProducesResponseType(StatusCodes.Status301MovedPermanently, Type = typeof(RedirectResult))]
         public IActionResult GetTopic(string topicParts)
