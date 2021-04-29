@@ -25,7 +25,7 @@ export class NavMenu extends Component {
                 { Key: 'home',           Url: '/',        Label: 'Home' },
                 { Key: 'install',        Url: '/install', Label: 'Install' },
                 { Key: 'documentation',  Url: '/docs',    Label: 'Documentation' },
-                { Key: 'donate',         Url: '/donate',  Label: 'Donate' },
+                //{ Key: 'donate',         Url: '/donate',  Label: 'Donate' },
                 { Key: 'about',          Url: '/about',   Label: 'About' }
             ],
             active: null
