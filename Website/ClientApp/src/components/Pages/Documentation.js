@@ -27,6 +27,8 @@ export class Documentation extends Component {
             topicTitle: defaultTitle,
             topicUrl: null
         }
+
+        this.fixSearchedTopicUrl();
     }
 
     componentDidMount() {
@@ -77,6 +79,16 @@ export class Documentation extends Component {
                     topicUrl: topicUrl
                 });
             });
+    }
+
+    fixSearchedTopicUrl() {
+        if (window.location.pathname.startsWith("/docs/html")) {
+            let newUrl = window.location.href.replace(
+                window.location.host + window.location.pathname,
+                window.location.host + window.location.pathname.replace("/docs/html", "/docs")
+            );
+            window.location.replace(newUrl)
+        }
     }
 
     fixTopicTitle(topicTitle) {

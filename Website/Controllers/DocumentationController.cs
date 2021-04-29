@@ -34,6 +34,7 @@ namespace TxFileSystem.Website.Controllers
         [HttpGet]
         [Route("docs/info/{**topicParts}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DocumentationInfoResult))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(EmptyResult))]
         public IActionResult GetTopicInfo(string topicParts)
         {
             var projectRootPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -53,11 +54,16 @@ namespace TxFileSystem.Website.Controllers
                 }
             }
 
-            var csQuery = (CsQuery.CQ)System.IO.File.ReadAllText(path);
-            var title = csQuery.Find("title").First();
-            var titleValue = title.Contents()[0].NodeValue;
+            if (System.IO.File.Exists(path))
+            {
+                var csQuery = (CsQuery.CQ)System.IO.File.ReadAllText(path);
+                var title = csQuery.Find("title").First();
+                var titleValue = title.Contents()[0].NodeValue;
 
-            return new DocumentationInfoResult(titleValue);
+                return new DocumentationInfoResult(titleValue);
+            }
+
+            return new EmptyResult();
         }
 
         [HttpGet]
