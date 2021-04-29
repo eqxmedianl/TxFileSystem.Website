@@ -1,12 +1,9 @@
 /**
  *
- * The code is this file is subject to EQX Proprietary License. Therefor it is copyrighted and restricted
- * from being copied, reproduced or redistributed by any party or indiviual other than the original
- * copyright holder mentioned below.
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the conditions mentioned in the shipped license are met.
  *
- * It's also not allowed to copy or redistribute the compiled binaries without explicit consent.
- *
- * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
+ * Copyright (c) 2021, EQX Media B.V. - All rights reserved.
  *
  */
 import React, { Component } from 'react';
@@ -25,9 +22,11 @@ export class NavMenu extends Component {
         this.state = {
             collapsed: true,
             menuItems: [
-                { Url: '/',        Label: 'Home' },
-                { Url: '/install', Label: 'Install' },
-                { Url: '/about', Label: 'About' }
+                { Key: 'home',           Url: '/',        Label: 'Home' },
+                { Key: 'install',        Url: '/install', Label: 'Install' },
+                { Key: 'documentation',  Url: '/docs',    Label: 'Documentation' },
+                //{ Key: 'donate',         Url: '/donate',  Label: 'Donate' },
+                { Key: 'about',          Url: '/about',   Label: 'About' }
             ],
             active: null
         };
@@ -60,7 +59,7 @@ export class NavMenu extends Component {
                     }
 
                     return (
-                        <NavItem className={className}>
+                        <NavItem className={className} key={menuItem.Key}>
                             <NavLink tag={Link} to={menuItem.Url} onClick={this._handleClick.bind(this, menuItem)}
                                 className="text-white">
                                 {menuItem.Label}</NavLink>

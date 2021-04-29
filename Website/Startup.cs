@@ -1,22 +1,23 @@
 /**
  * 
- * The code is this file is subject to EQX Proprietary License. Therefor it is copyrighted and restricted 
- * from being copied, reproduced or redistributed by any party or indiviual other than the original 
- * copyright holder mentioned below.
+ * Redistribution and use in source and binary forms, with or without modification, are permitted 
+ * provided that the conditions mentioned in the shipped license are met.
  * 
- * It's also not allowed to copy or redistribute the compiled binaries without explicit consent.
- * 
- * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
+ * Copyright (c) 2021, EQX Media B.V. - All rights reserved.
  * 
  */
 namespace TxFileSystem.Website
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using TxFileSystem.Website.Database;
+    using TxFileSystem.Website.Settings.Mollie;
 
     public class Startup
     {
@@ -30,6 +31,12 @@ namespace TxFileSystem.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<WebsiteDbContext>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+            services.Configure<Mollie>(Configuration.GetSection("Mollie"));
 
             services.AddControllersWithViews();
 

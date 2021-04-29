@@ -1,20 +1,17 @@
 ﻿/**
- * 
- * The code is this file is subject to EQX Proprietary License. Therefor it is copyrighted and restricted 
- * from being copied, reproduced or redistributed by any party or indiviual other than the original 
- * copyright holder mentioned below.
- * 
- * It's also not allowed to copy or redistribute the compiled binaries without explicit consent.
- * 
- * (c) 2021 EQX Media B.V. - All rights are stricly reserved.
- * 
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the conditions mentioned in the shipped license are met.
+ *
+ * Copyright (c) 2021, EQX Media B.V. - All rights reserved.
+ *
  */
 namespace TxFileSystem.Website.Repositories
 {
+    using global::NuGet.Configuration;
+    using global::NuGet.Protocol;
+    using global::NuGet.Protocol.Core.Types;
     using Newtonsoft.Json;
-    using NuGet.Configuration;
-    using NuGet.Protocol;
-    using NuGet.Protocol.Core.Types;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -22,11 +19,12 @@ namespace TxFileSystem.Website.Repositories
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
-    using TxFileSystem.Website.Model;
+    using TxFileSystem.Website.API.DTO;
+    using TxFileSystem.Website.NuGet;
 
     public sealed class PackageRepository
     {
-        public async Task<IEnumerable<Package>> GetPackages(string packageId)
+        public async Task<IEnumerable<PackageDTO>> GetPackages(string packageId)
         {
             var logger = new Logger();
 
@@ -42,7 +40,7 @@ namespace TxFileSystem.Website.Repositories
                 .Select(m =>
                 {
                     var r = ((PackageSearchMetadataRegistration)m);
-                    return new Package(r.IconUrl, r.Title, r.Description, r.Version.ToNormalizedString(),
+                    return new PackageDTO(r.IconUrl, r.Title, r.Description, r.Version.ToNormalizedString(),
                         versionDownloadCountsLookup.Versions.First(v => v.Version == r.Version.ToNormalizedString()).Downloads,
                         versionReleaseDateLookup.First(v => v.Item1 == r.Version.ToNormalizedString()).Item2.ToString());
                 });

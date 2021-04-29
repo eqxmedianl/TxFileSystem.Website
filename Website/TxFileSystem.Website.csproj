@@ -11,7 +11,7 @@
     <AssemblyName>TxFileSystem.Website</AssemblyName>
     <Company>EQX Media B.V.</Company>
     <Authors>Jarno Kamminga</Authors>
-    <Version>0.4.1</Version>
+    <Version>0.5.0</Version>
     <Copyright>(c) 2021 EQX Media B.V.</Copyright>
     <PackageProjectUrl>https://txfilesystem.io</PackageProjectUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
@@ -73,16 +73,16 @@
    * Added Install page.
 * Displaying EQXMedia.TxFileSystem package info, using:
    * Web API being a middleware API for several NuGet API calls.</PackageReleaseNotes>
-    <AssemblyVersion>0.4.1.0</AssemblyVersion>
-    <FileVersion>0.4.1.0</FileVersion>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsQuery" Version="1.3.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
     <PackageReference Include="NuGet.Client" Version="4.2.0" />
-    <PackageReference Include="NuGet.Logging" Version="3.4.3" />
     <PackageReference Include="NuGet.Protocol" Version="5.9.0" />
-    <PackageReference Include="NuGet.Repositories" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -102,6 +102,12 @@
     <Content Include="ClientApp\src\components\Layout\Footer.js" />
     <Content Include="ClientApp\src\components\Controls\FetchedMarkDown.css" />
     <Content Include="ClientApp\src\components\Controls\FetchedMarkDown.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries\TxFileSystem.Website.Database\TxFileSystem.Website.Database.csproj" />
+    <ProjectReference Include="..\Libraries\TxFileSystem.Website.NuGet\TxFileSystem.Website.NuGet.csproj" />
+    <ProjectReference Include="..\Libraries\TxFileSystem.Website.Repositories\TxFileSystem.Website.Repositories.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
