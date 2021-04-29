@@ -77,7 +77,10 @@ namespace TxFileSystem.Website.Controllers
             }
 
             var fileName = topicParts.Remove(0, topicParts.IndexOf('/') + 1);
-            var fileInFrameUrl = Path.Combine("https://localhost:44331/docs/", fileName);
+            var fileInFrameUrl = _accessor.ActionContext.HttpContext.Request.Scheme
+                + "://" + _accessor.ActionContext.HttpContext.Request.Host.Value
+                + "/docs/"
+                + fileName;
             return new RedirectResult(fileInFrameUrl, true);
         }
     }
