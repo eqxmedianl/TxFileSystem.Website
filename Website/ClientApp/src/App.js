@@ -48,7 +48,7 @@ export default class App extends Component {
                 </Helmet>
                 <StandardRoute exact path='/' component={Home} />
                 <StandardRoute path='/install' component={Install} />
-                <DocumentationRoute path='/docs' component={Documentation} />
+                <DocumentationRoute path='/docs/:topicParts?' component={Documentation} />
                 <StandardRoute path='/donate' component={Donate} />
                 <StandardRoute path='/license' component={License} />
                 <StandardRoute path='/about' component={About} />

@@ -10,6 +10,7 @@ namespace TxFileSystem.Website.Controllers
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.AspNetCore.StaticFiles;
     using Microsoft.Extensions.Logging;
     using System;
@@ -18,42 +19,66 @@ namespace TxFileSystem.Website.Controllers
 
     [ApiController]
     [Route("docs/view")]
-    [Produces("text/html", "text/css", "application/javascript", "text/javascript", "image/gif", "image/jpg", "image/png")]
+    [Produces("text/html", "text/css", "application/javascript", "text/javascript", "image/gif", "image/jpg", "image/png", "application/xml")]
     public class DocumentationController : ControllerBase
     {
         private readonly ILogger<DocumentationController> _logger;
+        private readonly IActionContextAccessor _accessor;
 
-        public DocumentationController(ILogger<DocumentationController> logger)
+        public DocumentationController(ILogger<DocumentationController> logger,
+            IActionContextAccessor accessor)
         {
             _logger = logger;
+            _accessor = accessor;
         }
 
         [HttpGet]
         [Route("{**topicParts}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DocumentationResult))]
+        [ProducesResponseType(StatusCodes.Status301MovedPermanently, Type = typeof(RedirectResult))]
         public IActionResult GetTopic(string topicParts)
         {
-            string projectRootPath = AppDomain.CurrentDomain.BaseDirectory;
-
-            string path = string.Empty;
-
-            if (topicParts == "index")
+            string unexpectedReferer = string.Empty;
+            if (_accessor.ActionContext.HttpContext.Request.Host.HasValue)
             {
-                path = projectRootPath + "/docs/index.html";
-            }
-            else
-            {
-                path = System.IO.Path.Combine(projectRootPath, "docs", topicParts);
+                unexpectedReferer = _accessor.ActionContext.HttpContext.Request.Scheme 
+                    + "://" + _accessor.ActionContext.HttpContext.Request.Host.Value
+                    + "/docs/topic/html/";
             }
 
-            var provider = new FileExtensionContentTypeProvider();
-            string contentType;
-            if (!provider.TryGetContentType(path, out contentType))
+            if (_accessor.ActionContext.HttpContext.Request.Headers.ContainsKey("Referer")
+                && !_accessor.ActionContext.HttpContext.Request.Headers["Referer"][0]
+                .StartsWith(unexpectedReferer))
             {
-                contentType = "application/octet-stream";
+                var projectRootPath = AppDomain.CurrentDomain.BaseDirectory;
+
+                string path;
+                if (topicParts == "index")
+                {
+                    path = projectRootPath + "/docs/index.html";
+                }
+                else
+                {
+                    path = Path.Combine(projectRootPath, "docs", topicParts);
+                    if (!System.IO.File.Exists(path))
+                    {
+                        path = Path.Combine(projectRootPath, "docs/html", topicParts);
+                    }
+                }
+
+                var provider = new FileExtensionContentTypeProvider();
+                if (!provider.TryGetContentType(path, out string contentType))
+                {
+                    contentType = "application/octet-stream";
+                }
+
+                return new DocumentationResult(new FileStream(path, FileMode.Open), contentType);
+
             }
 
-            return new DocumentationResult(new FileStream(path, FileMode.Open), contentType);
+            var fileName = topicParts.Remove(0, topicParts.IndexOf('/') + 1);
+            var fileInFrameUrl = Path.Combine("https://localhost:44331/docs/", fileName);
+            return new RedirectResult(fileInFrameUrl, true);
         }
     }
 }
