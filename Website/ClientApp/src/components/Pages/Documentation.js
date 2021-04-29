@@ -60,6 +60,10 @@ export class Documentation extends Component {
     }
 
     fetchTopicInfo(topicParts, topicUrl) {
+        if (topicParts === undefined) {
+            topicParts = "index";
+        }
+
         fetch('docs/info/' + topicParts,
             {
                 method: "GET"
@@ -67,13 +71,20 @@ export class Documentation extends Component {
             .then(response => response.text())
             .then(data => {
                 let documentationInfoResult = JSON.parse(data);
-                let topicTitle = documentationInfoResult.title;
 
                 this.setState({
-                    topicTitle: topicTitle + " | " + defaultTitle,
+                    topicTitle: this.fixTopicTitle(documentationInfoResult.title),
                     topicUrl: topicUrl
                 });
             });
+    }
+
+    fixTopicTitle(topicTitle) {
+        if (topicTitle.endsWith(" - Redirect")) {
+            topicTitle = topicTitle.substring(0, topicTitle.lastIndexOf(" - Redirect"));
+        }
+
+        return topicTitle + " | " + defaultTitle;
     }
 
     render() {
